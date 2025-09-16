@@ -1,15 +1,7 @@
-import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
+import Header from "../components/Header";
+import Footer from "../components/Footer";
 
 export const metadata = {
   title: "Create Next App",
@@ -17,16 +9,29 @@ export const metadata = {
 };
 
 export default function RootLayout({ children }) {
+  // Use client-side navigation to check pathname
+  // Exclude homepage and other paths from showing Footer
+  // This requires 'use client' and usePathname from 'next/navigation'
+  // You can add more excluded paths to the array below
+  const excludedPaths = ["/"];
+  let pathname;
+  if (typeof window !== "undefined") {
+    // fallback for SSR
+    pathname = window.location.pathname;
+  }
   return (
     <html lang="en">
       <head>
         <link rel="stylesheet" href="https://use.typekit.net/zyk8izc.css"></link>
       </head>
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
+      <body>
+        <Header />
         {children}
+        {/* Only show Footer if not on excluded paths */}
+        {(!excludedPaths.includes(pathname)) && <Footer />}
       </body>
     </html>
   );
 }
+
+

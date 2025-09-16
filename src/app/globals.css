@@ -5,11 +5,11 @@
   --foreground: #171717;
 }
 
-@theme inline {
+@theme {
+  /* Brand colors */
+  --color-green: #404C35;
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
 }
 
 @media (prefers-color-scheme: dark) {
@@ -36,4 +36,8 @@ body {
   height: 100vh;
   z-index: -1;
   object-fit: cover;
+}
+
+.homepage footer {
+  display: none;
 }
