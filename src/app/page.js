@@ -17,8 +17,9 @@ export default function Home() {
             alt="Studio Wu Logo"
             width={500}
             height={0}
+            className="fade-in"
           />
-          <nav className="w-full">
+          <nav className="w-full fade-in">
             <ul className="flex gap-4 text-white text-lg justify-between w-full angie uppercase">
               <li>
                 <a href="/projects">Projects</a>

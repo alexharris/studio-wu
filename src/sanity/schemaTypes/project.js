@@ -34,5 +34,106 @@ export default defineType({
         hotspot: true,
       },
     }),
+    defineField({
+      name: 'contentBlocks',
+      title: 'Content Blocks',
+      type: 'array',
+      of: [
+        {
+          name: 'fullWidthImage',
+          title: 'Full Width Image',
+          type: 'object',
+          fields: [
+            {
+              name: 'image',
+              title: 'Image',
+              type: 'image',
+              options: {
+                hotspot: true,
+              },
+              validation: Rule => Rule.required(),
+            },
+            {
+              name: 'alt',
+              title: 'Alt Text',
+              type: 'string',
+              description: 'Alternative text for accessibility',
+            },
+            {
+              name: 'caption',
+              title: 'Caption',
+              type: 'string',
+              description: 'Optional caption displayed below the image',
+            },
+          ],
+          preview: {
+            select: {
+              title: 'alt',
+              media: 'image',
+            },
+            prepare(selection) {
+              const {title, media} = selection;
+              return {
+                title: title || 'Full Width Image',
+                subtitle: 'Image Block',
+                media: media,
+              };
+            },
+          },
+        },
+        {
+          name: 'twoColumnImage',
+          title: 'Two Column Images',
+          type: 'object',
+          fields: [
+            {
+              name: 'leftImage',
+              title: 'Left Image',
+              type: 'image',
+              options: {
+                hotspot: true,
+              },
+              validation: Rule => Rule.required(),
+            },
+            {
+              name: 'leftAlt',
+              title: 'Left Image Alt Text',
+              type: 'string',
+              description: 'Alternative text for left image',
+            },
+            {
+              name: 'rightImage',
+              title: 'Right Image',
+              type: 'image',
+              options: {
+                hotspot: true,
+              },
+              validation: Rule => Rule.required(),
+            },
+            {
+              name: 'rightAlt',
+              title: 'Right Image Alt Text',
+              type: 'string',
+              description: 'Alternative text for right image',
+            },
+          ],
+          preview: {
+            select: {
+              leftImage: 'leftImage',
+              rightImage: 'rightImage',
+              leftAlt: 'leftAlt',
+            },
+            prepare(selection) {
+              const {leftImage, leftAlt} = selection;
+              return {
+                title: leftAlt || 'Two Column Images',
+                subtitle: 'Two Column Block',
+                media: leftImage,
+              };
+            },
+          },
+        },
+      ],
+    }),
   ],
 })

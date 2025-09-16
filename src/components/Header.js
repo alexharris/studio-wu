@@ -14,12 +14,14 @@ export default function Header() {
   if (shouldExclude) return null;
   return (
     <header className="flex justify-between items-center p-8 pb-0 pt-12 mb-12">
-      <Image
-        src="/StudioWu_Logo_Black_1000px.png"
-        alt="Studio Wu Logo"
-        width={250}
-        height={0}
-      />
+      <a href="/">
+        <Image
+          src="/StudioWu_Logo_Black_1000px.png"
+          alt="Studio Wu Logo"
+          width={250}
+          height={0}
+        />
+      </a>
       <nav className="">
         <ul className="flex gap-4 text-black justify-between w-full angie uppercase">
           <li>

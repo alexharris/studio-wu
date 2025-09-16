@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import { client } from "../../../sanity/lib/client";
 import { urlFor } from "../../../sanity/lib/image";
 import { getProjectBySlugQuery } from "../../../utils/sanity-queries";
+import ContentBlocks from "../../../components/ContentBlocks";
 
 export default async function Project({ params }) {
   const { slug } = params;
@@ -22,18 +23,9 @@ export default async function Project({ params }) {
           <p className="angie mb-8 text-xl text-center">{project.location}</p>
         )}
         
-        {project.featuredImage && (
-          <div className="mb-8">
-            <Image
-              src={urlFor(project.featuredImage).url()}
-              alt={project.title || 'Project image'}
-              width={0}
-              height={0}
-              sizes="100vw"
-              className="w-full h-auto"
-            />
-          </div>
-        )}
+
+        {/* Render content blocks */}
+        <ContentBlocks blocks={project.contentBlocks} />
       </main>
     </div>
   );

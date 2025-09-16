@@ -26,6 +26,36 @@ export const getProjectBySlugQuery = groq`
         _id,
         url
       }
+    },
+    contentBlocks[]{
+      _type,
+      _key,
+      _type == "fullWidthImage" => {
+        image{
+          asset->{
+            _id,
+            url
+          }
+        },
+        alt,
+        caption
+      },
+      _type == "twoColumnImage" => {
+        leftImage{
+          asset->{
+            _id,
+            url
+          }
+        },
+        leftAlt,
+        rightImage{
+          asset->{
+            _id,
+            url
+          }
+        },
+        rightAlt        
+      }
     }
   }
 `
