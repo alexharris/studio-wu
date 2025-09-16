@@ -1,8 +1,17 @@
 "use client";
+
 import Image from "next/image";
+import { usePathname } from "next/navigation";
 
 
 export default function Header() {
+  const pathname = usePathname();
+  const excludedPaths = ["/"];
+  // Check if pathname matches excluded paths or starts with /studio
+  const shouldExclude = excludedPaths.includes(pathname) || pathname.startsWith('/studio');
+
+  
+  if (shouldExclude) return null;
   return (
     <header className="flex justify-between items-center p-8 pb-0 pt-12">
       <Image
