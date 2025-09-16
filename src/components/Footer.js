@@ -10,7 +10,7 @@ export default function Footer() {
   const shouldExclude = excludedPaths.includes(pathname) || pathname.startsWith('/studio');
   if (shouldExclude) return null;
   return (
-    <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center bg-green text-white text-xl angie p-8">
+    <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center bg-green text-white text-xl angie p-8 mt-12">
       <div className="flex-1">
         <p>
           maria@studiowuinteriors.com<br />

@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import { client } from "../../sanity/lib/client";
 import { urlFor } from "../../sanity/lib/image";
 import { getAllProjectsQuery } from "../../utils/sanity-queries";
@@ -15,22 +16,24 @@ export default async function Projects() {
           {projects.length > 0 ? (
             <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
               {projects.map((project) => (
-                <div key={project._id} className="">
-                  {console.log(project)}
-                  {project.featuredImage && (
-                    <Image
-                      src={urlFor(project.featuredImage).url()}
-                      alt={project.title || 'Project image'}
-                      width={300}
-                      height={200}
-                      className="w-full mb-4"
-                    />
-                  )}
+                <Link key={project._id} href={`/projects/${project.slug?.current}`} className="block">
                   <div className="">
-                    <h2 className="text-xl mb-2">{project.title}</h2>
-                    {project.location && <p className="angie">{project.location}</p>}
+                    {console.log(project)}
+                    {project.featuredImage && (
+                      <Image
+                        src={urlFor(project.featuredImage).url()}
+                        alt={project.title || 'Project image'}
+                        width={300}
+                        height={200}
+                        className="w-full mb-4"
+                      />
+                    )}
+                    <div className="">
+                      <h2 className="text-xl mb-2">{project.title}</h2>
+                      {project.location && <p className="angie">{project.location}</p>}
+                    </div>
                   </div>
-                </div>
+                </Link>
               ))}
             </div>
           ) : (
