@@ -13,7 +13,7 @@ export default function Header() {
   
   if (shouldExclude) return null;
   return (
-    <header className="flex justify-between items-center p-8 pb-0 pt-12">
+    <header className="flex justify-between items-center p-8 pb-0 pt-12 mb-12">
       <Image
         src="/StudioWu_Logo_Black_1000px.png"
         alt="Studio Wu Logo"
