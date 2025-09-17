@@ -9,7 +9,7 @@ const FullWidthImageBlock = ({ block }) => {
   if (!image) return null;
 
   return (
-    <div className="mb-8">
+    <div className="mb-12 md:mb-24 ">
       <Image
         src={urlFor(image).url()}
         alt={alt || 'Content image'}
@@ -34,8 +34,8 @@ const TwoColumnImageBlock = ({ block }) => {
   if (!leftImage || !rightImage) return null;
 
   return (
-    <div className="mb-8">
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+    <div className="mb-12 md:mb-24 ">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
         <div>
           <Image
             src={urlFor(leftImage).url()}
@@ -68,7 +68,7 @@ const CenteredImageBlock = ({ block }) => {
   if (!image) return null;
 
   return (
-    <div className="mb-8 flex flex-col items-center">
+    <div className="mb-12 md:mb-24  flex flex-col items-center">
       <div className={`${maxWidth} w-full`}>
         <Image
           src={urlFor(image).url()}
@@ -110,7 +110,7 @@ const PullQuoteBlock = ({ block }) => {
   };
 
   return (
-    <div className="mb-8 py-8">
+    <div className="mb-12 md:mb-24 py-8">
       <blockquote className="text-center max-w-4xl mx-auto">
         <PortableText 
           value={quote} 
@@ -122,6 +122,121 @@ const PullQuoteBlock = ({ block }) => {
           </cite>
         )}
       </blockquote>
+    </div>
+  );
+};
+
+// Component to render an image and text block
+const ImageTextBlock = ({ block }) => {
+  const { image, alt, text, layout = 'image-left' } = block;
+  
+  if (!image || !text) return null;
+
+  // Standard body text styling for PortableText rendering
+  const portableTextComponents = {
+    block: {
+      normal: ({ children }) => (
+        <p className="text-base leading-relaxed text-gray-900 mb-4">
+          {children}
+        </p>
+      ),
+      h2: ({ children }) => (
+        <h2 className="text-2xl font-semibold text-gray-900 mb-4">
+          {children}
+        </h2>
+      ),
+      h3: ({ children }) => (
+        <h3 className="text-xl font-semibold text-gray-900 mb-3">
+          {children}
+        </h3>
+      ),
+      h4: ({ children }) => (
+        <h4 className="text-lg font-semibold text-gray-900 mb-2">
+          {children}
+        </h4>
+      ),
+    },
+    list: {
+      bullet: ({ children }) => (
+        <ul className="list-disc ml-6 mb-4 space-y-2">
+          {children}
+        </ul>
+      ),
+      number: ({ children }) => (
+        <ol className="list-decimal ml-6 mb-4 space-y-2">
+          {children}
+        </ol>
+      ),
+    },
+    listItem: ({ children }) => (
+      <li className="text-base leading-relaxed text-gray-900">
+        {children}
+      </li>
+    ),
+    marks: {
+      strong: ({ children }) => <strong className="font-semibold">{children}</strong>,
+      em: ({ children }) => <em className="italic">{children}</em>,
+      underline: ({ children }) => <span className="underline">{children}</span>,
+      code: ({ children }) => (
+        <code className="bg-gray-100 px-1 py-0.5 rounded text-sm font-mono">
+          {children}
+        </code>
+      ),
+      link: ({ children, value }) => (
+        <a 
+          href={value?.href} 
+          className="text-blue-600 hover:text-blue-800 underline"
+          target={value?.href?.startsWith('http') ? '_blank' : '_self'}
+          rel={value?.href?.startsWith('http') ? 'noopener noreferrer' : undefined}
+        >
+          {children}
+        </a>
+      ),
+    },
+    types: {
+      break: () => <br />,
+    },
+  };
+
+  const imageElement = (
+    <div className="flex-1">
+      <Image
+        src={urlFor(image).url()}
+        alt={alt || 'Content image'}
+        width={0}
+        height={0}
+        sizes="(max-width: 768px) 100vw, 50vw"
+        className="w-full h-auto"
+      />
+    </div>
+  );
+
+  const textElement = (
+    <div className="flex-1">
+      <div className="prose prose-gray max-w-none">
+        <PortableText 
+          value={text} 
+          components={portableTextComponents}
+        />
+      </div>
+    </div>
+  );
+
+  return (
+    <div className="mb-12 md:mb-24 ">
+      <div className="flex flex-col md:flex-row items-start gap-6 md:gap-8">
+        {layout === 'image-left' ? (
+          <>
+            {imageElement}
+            {textElement}
+          </>
+        ) : (
+          <>
+            {textElement}
+            {imageElement}
+          </>
+        )}
+      </div>
     </div>
   );
 };
@@ -161,7 +276,7 @@ const ImageQuoteBlock = ({ block }) => {
   );
 
   const quoteElement = (
-    <div className="flex-1 flex flex-col px-6 md:px-8">
+    <div className="flex-1 flex flex-col">
       <blockquote>
         <PortableText 
           value={quote} 
@@ -177,7 +292,7 @@ const ImageQuoteBlock = ({ block }) => {
   );
 
   return (
-    <div className="mb-8">
+    <div className="mb-12 md:mb-24 ">
       <div className="flex flex-col md:flex-row items-start gap-6 md:gap-8">
         {layout === 'image-left' ? (
           <>
@@ -215,6 +330,8 @@ export default function ContentBlocks({ blocks }) {
             return <PullQuoteBlock key={block._key} block={block} />;
           case 'imageQuote':
             return <ImageQuoteBlock key={block._key} block={block} />;
+          case 'imageText':
+            return <ImageTextBlock key={block._key} block={block} />;
           default:
             console.warn(`Unknown block type: ${block._type}`);
             return null;

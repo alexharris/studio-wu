@@ -15,7 +15,7 @@ export default async function Project({ params }) {
   }
 
   return (
-    <div className="px-8">
+    <div className="px-8 flex-1">
       <main>
         <h1 className="text-6xl mb-8 text-center">{project.title}</h1>
         <p className="angie mb-8 text-center">–</p>

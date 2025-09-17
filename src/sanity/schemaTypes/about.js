@@ -1,13 +1,14 @@
 import {defineField, defineType} from 'sanity'
 
 export default defineType({
-  name: 'project',
-  title: 'Projects',
+  name: 'about',
+  title: 'About Page',
   type: 'document',
+  __experimental_singleton: true, // Restricts to only one document
   fields: [
     defineField({
       name: 'title',
-      title: 'Title',
+      title: 'Page Title',
       type: 'string',
       validation: Rule => Rule.required(),
     }),
@@ -20,19 +21,9 @@ export default defineType({
         maxLength: 96,
       },
       validation: Rule => Rule.required(),
-    }),
-    defineField({
-      name: 'location',
-      title: 'Location',
-      type: 'string',
-    }),
-    defineField({
-      name: 'featuredImage',
-      title: 'Featured Image',
-      type: 'image',
-      options: {
-        hotspot: true,
-      },
+      initialValue: {
+        current: 'about'
+      }
     }),
     defineField({
       name: 'contentBlocks',
@@ -450,4 +441,16 @@ export default defineType({
       ],
     }),
   ],
+  preview: {
+    select: {
+      title: 'title',
+    },
+    prepare(selection) {
+      const {title} = selection;
+      return {
+        title: title || 'About Page',
+        subtitle: 'About page content',
+      };
+    },
+  },
 })
