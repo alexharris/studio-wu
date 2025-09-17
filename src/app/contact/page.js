@@ -13,7 +13,7 @@ export default async function Contact() {
   return (
     <div className="px-8 flex-1">
       <main className="w-full flex flex-col items-center">
-        <h1 className="mb-4">{contactPage.title}</h1>
+        <h1 className="mb-4 text-2xl">{contactPage.title}</h1>
         <p className="mb-4">email address</p>
         <p className="mb-16">phone number</p>
         {/* Render contact image */}

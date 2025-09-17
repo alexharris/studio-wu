@@ -136,22 +136,22 @@ const ImageTextBlock = ({ block }) => {
   const portableTextComponents = {
     block: {
       normal: ({ children }) => (
-        <p className="text-base leading-relaxed text-gray-900 mb-4">
+        <p className="text-base leading-relaxed mb-4">
           {children}
         </p>
       ),
       h2: ({ children }) => (
-        <h2 className="text-2xl font-semibold text-gray-900 mb-4">
+        <h2 className="text-2xl mb-4">
           {children}
         </h2>
       ),
       h3: ({ children }) => (
-        <h3 className="text-xl font-semibold text-gray-900 mb-3">
+        <h3 className="text-xl mb-3">
           {children}
         </h3>
       ),
       h4: ({ children }) => (
-        <h4 className="text-lg font-semibold text-gray-900 mb-2">
+        <h4 className="text-l mb-2">
           {children}
         </h4>
       ),
@@ -213,7 +213,7 @@ const ImageTextBlock = ({ block }) => {
 
   const textElement = (
     <div className="flex-1">
-      <div className="prose prose-gray max-w-none">
+      <div className="max-w-none">
         <PortableText 
           value={text} 
           components={portableTextComponents}

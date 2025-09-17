@@ -18,7 +18,6 @@ export default async function Projects() {
               {projects.map((project) => (
                 <Link key={project._id} href={`/projects/${project.slug?.current}`} className="block">
                   <div className="">
-                    {console.log(project)}
                     {project.featuredImage && (
                       <Image
                         src={urlFor(project.featuredImage).url()}
@@ -29,7 +28,7 @@ export default async function Projects() {
                       />
                     )}
                     <div className="">
-                      <h2 className="text-xl mb-2">{project.title}</h2>
+                      <h2 className="text-xl mb-2 self">{project.title}</h2>
                       {project.location && <p className="angie">{project.location}</p>}
                     </div>
                   </div>
