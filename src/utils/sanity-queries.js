@@ -55,6 +55,34 @@ export const getProjectBySlugQuery = groq`
           }
         },
         rightAlt        
+      },
+      _type == "centeredImage" => {
+        image{
+          asset->{
+            _id,
+            url
+          }
+        },
+        alt,
+        caption,
+        maxWidth
+      },
+      _type == "pullQuote" => {
+        quote,
+        attribution,
+        size
+      },
+      _type == "imageQuote" => {
+        image{
+          asset->{
+            _id,
+            url
+          }
+        },
+        alt,
+        quote,
+        attribution,
+        layout
       }
     }
   }
