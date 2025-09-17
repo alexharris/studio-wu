@@ -31,7 +31,7 @@ export default function Home() {
                 <a href="/contact">Contact</a>
               </li>
               <li>
-                <a href="#">Press</a>
+                <a href="/press">Press</a>
               </li>
             </ul>
           </nav>

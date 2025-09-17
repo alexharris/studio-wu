@@ -7,6 +7,7 @@ export const structure = (S) =>
       S.listItem()
         .title('About Page')
         .id('about')
+        .icon(() => '📄')
         .child(
           S.document()
             .schemaType('about')
@@ -17,6 +18,7 @@ export const structure = (S) =>
       S.listItem()
         .title('Contact Page')
         .id('contact')
+        .icon(() => '📄')
         .child(
           S.document()
             .schemaType('contact')

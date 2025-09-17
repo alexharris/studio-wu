@@ -18,7 +18,7 @@ export default function Header() {
         <Image
           src="/StudioWu_Logo_Black_1000px.png"
           alt="Studio Wu Logo"
-          width={250}
+          width={180}
           height={0}
         />
       </a>
@@ -34,7 +34,7 @@ export default function Header() {
             <a href="/contact">Contact</a>
           </li>
           <li>
-            <a href="#">Press</a>
+            <a href="/press">Press</a>
           </li>
         </ul>
       </nav>

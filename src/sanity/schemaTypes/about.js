@@ -4,6 +4,7 @@ export default defineType({
   name: 'about',
   title: 'About Page',
   type: 'document',
+  icon: () => '📄',
   __experimental_singleton: true, // Restricts to only one document
   fields: [
     defineField({

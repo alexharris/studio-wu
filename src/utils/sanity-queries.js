@@ -190,3 +190,22 @@ export const getContactPageQuery = groq`
     alt
   }
 `
+
+export const getAllPressQuery = groq`
+  *[_type == "press"] | order(publishedAt desc){
+    _id,
+    title,
+    source,
+    image{
+      asset->{
+        _id,
+        url
+      }
+    },
+    link{
+      text,
+      url
+    },
+    date
+  }
+`
