@@ -11,7 +11,7 @@ export default async function About() {
   }
 
   return (
-    <div className="px-8 flex-1">
+    <div className="px-4 md:px-8 flex-1">
       <main>
         <h1 className="sr-only">{aboutPage.title}</h1>
         

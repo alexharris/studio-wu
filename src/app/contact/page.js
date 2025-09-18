@@ -11,7 +11,7 @@ export default async function Contact() {
   }
 
   return (
-    <div className="px-8 flex-1">
+    <div className="px-4 md:px-8 flex-1">
       <main className="w-full flex flex-col items-center">
         <h1 className="mb-4 text-2xl">{contactPage.title}</h1>
         <p className="mb-4">email address</p>

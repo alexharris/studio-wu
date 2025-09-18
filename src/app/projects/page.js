@@ -9,7 +9,7 @@ export default async function Projects() {
 
   return (
     <>
-      <div className="px-8 flex-1">
+      <div className="px-4 md:px-8 flex-1">
         <main className="">
           <h1 className="sr-only">Projects</h1>
 
