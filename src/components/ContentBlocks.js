@@ -199,7 +199,7 @@ const ImageTextBlock = ({ block }) => {
   };
 
   const imageElement = (
-    <div className="flex-1">
+    <div className="flex-1 w-full">
       <Image
         src={urlFor(image).url()}
         alt={alt || 'Content image'}
@@ -212,7 +212,7 @@ const ImageTextBlock = ({ block }) => {
   );
 
   const textElement = (
-    <div className="flex-1">
+    <div className="flex-1 w-full">
       <div className="max-w-none">
         <PortableText 
           value={text} 
@@ -263,7 +263,7 @@ const ImageQuoteBlock = ({ block }) => {
   };
 
   const imageElement = (
-    <div className="flex-1">
+    <div className="flex-1 w-full">
       <Image
         src={urlFor(image).url()}
         alt={alt || 'Quote image'}

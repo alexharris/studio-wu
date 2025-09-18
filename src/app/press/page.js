@@ -10,7 +10,7 @@ export default async function Press() {
     <>
       <div className="px-4 md:px-8 flex-1">
         <main className="">
-          <h1 className="text-6xl mb-24 text-center">Press</h1>
+          <h1 className="text-4xl mb-24 text-center">Press</h1>
 
           {pressItems.length > 0 ? (
             <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8">

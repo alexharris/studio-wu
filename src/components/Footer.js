@@ -10,7 +10,7 @@ export default function Footer() {
   const shouldExclude = excludedPaths.includes(pathname) || pathname.startsWith('/studio');
   if (shouldExclude) return null;
   return (
-    <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center bg-green text-taupe  angie p-8 mt-12">
+    <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center bg-green text-white angie p-8 mt-12">
       <div className="flex-1">
         <p>
           maria@studiowuinteriors.com<br />
@@ -21,7 +21,7 @@ export default function Footer() {
               <path d="M13.3333 9.47476C13.4361 10.1683 13.3176 10.8766 12.9947 11.4989C12.6718 12.1213 12.1609 12.6259 11.5346 12.9412C10.9083 13.2564 10.1986 13.3661 9.50641 13.2547C8.81419 13.1433 8.17472 12.8165 7.67895 12.3207C7.18318 11.825 6.85636 11.1855 6.74497 10.4933C6.63359 9.80106 6.74331 9.09134 7.05852 8.46507C7.37374 7.83881 7.87841 7.32788 8.50074 7.00496C9.12307 6.68205 9.83138 6.56359 10.5249 6.66643C11.2324 6.77133 11.8873 7.10098 12.393 7.60669C12.8987 8.11239 13.2283 8.76733 13.3333 9.47476Z" stroke="white" stroke-linecap="round" stroke-linejoin="round"/>
               <path d="M14.5835 5.4165H14.5918" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
-            @studiowuinteriors
+            <a href="https://www.instagram.com/studiowuinteriors/" target="_blank" rel="noopener noreferrer">@studiowuinteriors</a>
           </span>
 
         </p>
@@ -34,7 +34,7 @@ export default function Footer() {
           height={0}
         />
       </div>
-      <div className="flex-1 text-right">
+      <div className="hidden sm:block flex-1 text-right">
         <p>SF Bay Area</p>
       </div>
     </footer>
