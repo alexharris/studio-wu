@@ -2,8 +2,9 @@ import Image from "next/image";
 import { notFound } from "next/navigation";
 import { client } from "../../../sanity/lib/client";
 import { urlFor } from "../../../sanity/lib/image";
-import { getProjectBySlugQuery } from "../../../utils/sanity-queries";
+import { getProjectBySlugQuery, getAdjacentProjectsQuery } from "../../../utils/sanity-queries";
 import ContentBlocks from "../../../components/ContentBlocks";
+import ProjectPagination from "../../../components/ProjectPagination";
 
 export default async function Project({ params }) {
   const { slug } = params;
@@ -13,6 +14,14 @@ export default async function Project({ params }) {
   if (!project) {
     notFound();
   }
+
+  // Fetch adjacent projects for pagination
+  const { currentProject, allProjects } = await client.fetch(getAdjacentProjectsQuery, { slug });
+  
+  // Find current project index and get adjacent projects
+  const currentIndex = allProjects.findIndex(p => p._id === currentProject._id);
+  const previousProject = currentIndex > 0 ? allProjects[currentIndex - 1] : null;
+  const nextProject = currentIndex < allProjects.length - 1 ? allProjects[currentIndex + 1] : null;
 
   return (
     <div className="px-4 md:px-8 flex-1">
@@ -26,6 +35,12 @@ export default async function Project({ params }) {
 
         {/* Render content blocks */}
         <ContentBlocks blocks={project.contentBlocks} />
+
+        {/* Project Pagination */}
+        <ProjectPagination 
+          previousProject={previousProject}
+          nextProject={nextProject}
+        />
  
     </div>
   );

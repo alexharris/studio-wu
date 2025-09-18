@@ -209,3 +209,17 @@ export const getAllPressQuery = groq`
     date
   }
 `
+
+export const getAdjacentProjectsQuery = groq`
+{
+  "currentProject": *[_type == "project" && slug.current == $slug][0]{
+    _id,
+    title,
+    slug
+  },
+  "allProjects": *[_type == "project"] | order(_createdAt asc){
+    _id,
+    title,
+    slug
+  }
+}`
