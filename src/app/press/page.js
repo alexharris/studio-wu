@@ -8,48 +8,40 @@ export default async function Press() {
 
   return (
     <>
-      <div className="px-4 md:px-8 flex-1">
+      <div className="px-4 md:px-8 flex-1 w-full mx-auto">
         <main className="">
           <h1 className="text-4xl mb-24 text-center">Press</h1>
-
-          {pressItems.length > 0 ? (
-            <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8">
-              {pressItems.map((pressItem) => (
-                <div key={pressItem._id} className="block">
-                  <div className="">
-                    {pressItem.image && (
-                      <a 
-                        href={pressItem.link.url}
-                      >              
-                        <div className="relative w-full aspect-[2/3] mb-4">
-                          <Image
-                            src={urlFor(pressItem.image).url()}
-                            alt={pressItem.title || 'Press image'}
-                            fill
-                            className="object-cover"
-                          />
-                        </div>
-                      </a>
-                    )}
+          <div className="flex flex-col md:flex-row gap-8">
+            {pressItems.length > 0 ? (
+              <div className="w-full md:w-1/2 flex flex-col gap-8">
+                {pressItems.map((pressItem) => (
+                  <div key={pressItem._id} className="block">
                     <div className="">
-                      <a href={pressItem.link.url}>
-                        <h2 className="text-xl mb-2 self">{pressItem.link.text}</h2>
-                      </a>                      
-
-                      {pressItem.link && (
+                      <div className="">
                         <a href={pressItem.link.url}>
-                          {pressItem.title && <p className="angie mb-2"><em>{pressItem.source}</em>{pressItem.date && <span> - {pressItem.date}</span>}</p>}
-                          
-                        </a>
-                      )}
+                          <h2 className="text-xl mb-2 self">{pressItem.link.text}</h2>
+                        </a>                      
+                        {pressItem.title && <p className="angie mb-2"><em>{pressItem.source}</em>{pressItem.date && <span> - {pressItem.date}</span>}</p>}
+                      </div>
                     </div>
                   </div>
-                </div>
-              ))}
+                ))}
+              </div>
+            ) : (
+              <p>No press coverage found.</p>
+            )}
+            <div className="w-full md:w-1/2">
+              <Image
+                src="/2024_0521_StudioWu_609McCorkle_PlayBarn_2.jpg"
+                alt={pressItems[0].alt || "Press Image"}
+                width={0}
+                height={0}
+                sizes="100vw"
+                className="w-full"
+              />
             </div>
-          ) : (
-            <p>No press coverage found.</p>
-          )}
+          </div>
+
         </main>
       </div>
     </>
