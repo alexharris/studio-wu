@@ -3,6 +3,19 @@ export const structure = (S) =>
   S.list()
     .title('Content')
     .items([
+      // Site Settings as singleton
+      S.listItem()
+        .title('Site Settings')
+        .id('settings')
+        .icon(() => '⚙️')
+        .child(
+          S.document()
+            .schemaType('settings')
+            .documentId('settings')
+            .title('Site Settings')
+        ),
+      // Divider
+      S.divider(),
       // About page as singleton
       S.listItem()
         .title('About Page')
@@ -29,6 +42,6 @@ export const structure = (S) =>
       S.divider(),
       // All other document types (Projects, etc.)
       ...S.documentTypeListItems().filter(
-        (listItem) => !['about', 'contact'].includes(listItem.getId())
+        (listItem) => !['about', 'contact', 'settings'].includes(listItem.getId())
       ),
     ])
