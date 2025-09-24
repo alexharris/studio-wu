@@ -17,7 +17,7 @@ export default async function Projects() {
             <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
               {projects.map((project) => (
                 
-                  <div className="">
+                  <div className="mb-6">
                     {project.featuredImage && (
                       <Link key={project._id} href={`/projects/${project.slug?.current}`} className="block">
                         <Image

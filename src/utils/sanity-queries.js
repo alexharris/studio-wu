@@ -219,3 +219,10 @@ export const getAdjacentProjectsQuery = groq`
     slug
   }
 }`
+
+export const getSettingsQuery = groq`
+  *[_type == "settings"][0]{
+    phoneNumber,
+    emailAddress
+  }
+`
