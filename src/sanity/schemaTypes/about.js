@@ -51,12 +51,6 @@ export default defineType({
               type: 'string',
               description: 'Alternative text for accessibility',
             },
-            {
-              name: 'caption',
-              title: 'Caption',
-              type: 'string',
-              description: 'Optional caption displayed below the image',
-            },
           ],
           preview: {
             select: {
@@ -144,12 +138,6 @@ export default defineType({
               title: 'Alt Text',
               type: 'string',
               description: 'Alternative text for accessibility',
-            },
-            {
-              name: 'caption',
-              title: 'Caption',
-              type: 'string',
-              description: 'Optional caption displayed below the image',
             },
             {
               name: 'maxWidth',

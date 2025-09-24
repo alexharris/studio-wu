@@ -4,7 +4,7 @@ import { urlFor } from "../sanity/lib/image";
 
 // Component to render a full width image block
 const FullWidthImageBlock = ({ block }) => {
-  const { image, alt, caption } = block;
+  const { image, alt } = block;
   
   if (!image) return null;
 
@@ -18,18 +18,13 @@ const FullWidthImageBlock = ({ block }) => {
         sizes="100vw"
         className="w-full h-auto"
       />
-      {caption && (
-        <p className="text-sm text-gray-600 mt-2 text-center italic">
-          {caption}
-        </p>
-      )}
     </div>
   );
 };
 
 // Component to render a two column image block
 const TwoColumnImageBlock = ({ block }) => {
-  const { leftImage, leftAlt, rightImage, rightAlt, caption } = block;
+  const { leftImage, leftAlt, rightImage, rightAlt } = block;
   
   if (!leftImage || !rightImage) return null;
 
@@ -63,7 +58,7 @@ const TwoColumnImageBlock = ({ block }) => {
 
 // Component to render a centered image block
 const CenteredImageBlock = ({ block }) => {
-  const { image, alt, caption, maxWidth = 'max-w-lg' } = block;
+  const { image, alt, maxWidth = 'max-w-lg' } = block;
   
   if (!image) return null;
 
@@ -79,11 +74,6 @@ const CenteredImageBlock = ({ block }) => {
           className="w-full h-auto"
         />
       </div>
-      {caption && (
-        <p className="text-sm text-gray-600 mt-2 text-center italic">
-          {caption}
-        </p>
-      )}
     </div>
   );
 };

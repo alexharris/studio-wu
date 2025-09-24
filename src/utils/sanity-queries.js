@@ -37,8 +37,7 @@ export const getProjectBySlugQuery = groq`
             url
           }
         },
-        alt,
-        caption
+        alt
       },
       _type == "twoColumnImage" => {
         leftImage{
@@ -64,7 +63,6 @@ export const getProjectBySlugQuery = groq`
           }
         },
         alt,
-        caption,
         maxWidth
       },
       _type == "pullQuote" => {
@@ -114,8 +112,7 @@ export const getAboutPageQuery = groq`
             url
           }
         },
-        alt,
-        caption
+        alt
       },
       _type == "twoColumnImage" => {
         leftImage{
@@ -141,7 +138,6 @@ export const getAboutPageQuery = groq`
           }
         },
         alt,
-        caption,
         maxWidth
       },
       _type == "pullQuote" => {
