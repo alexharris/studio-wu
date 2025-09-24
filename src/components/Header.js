@@ -30,14 +30,14 @@ export default function Header() {
           <Image
             src="/StudioWu_Logo_Black_1000px.png"
             alt="Studio Wu Logo"
-            width={140}
+            width={200}
             height={0}
           />
         </a>
 
         {/* Desktop Navigation */}
         <nav className="hidden md:block">
-          <ul className="flex items-center gap-4 text-black justify-between w-full angie uppercase text-sm">
+          <ul className="flex items-center gap-4 text-black justify-between w-full angie uppercase text-md">
             <li>
               <a href="/projects">Projects</a>
             </li>

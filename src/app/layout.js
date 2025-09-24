@@ -18,9 +18,9 @@ export const metadata = {
     type: "website",
     images: [
       {
-        url: "/StudioWu_Logo_Black_1000px.png",
-        width: 1000,
-        height: 1000,
+        url: "/ogimage-card.jpg",
+        width: 1200,
+        height: 630,
         alt: "Studio Wu Logo",
       },
     ],
@@ -29,7 +29,7 @@ export const metadata = {
     card: "summary_large_image",
     title: "Studio Wu",
     description: "Studio Wu is an interior design studio in the San Francisco Bay Area",
-    images: ["/StudioWu_Logo_Black_1000px.png"],
+    images: ["/ogimage-card.jpg"],
   },
   icons: {
     icon: [
