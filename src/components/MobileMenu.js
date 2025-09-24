@@ -5,6 +5,19 @@ import Image from "next/image";
 
 
 export default function MobileMenu({ isOpen, onClose }) {
+  // Preload the mobile menu image when component mounts
+  useEffect(() => {
+    const preloadImage = () => {
+      const link = document.createElement('link');
+      link.rel = 'preload';
+      link.as = 'image';
+      link.href = '/StudioWu_Monogram_White_100px.png';
+      document.head.appendChild(link);
+    };
+
+    preloadImage();
+  }, []); // Empty dependency array means this runs once when component mounts
+
   // Prevent body scroll when menu is open
   useEffect(() => {
     if (isOpen) {
@@ -102,9 +115,9 @@ export default function MobileMenu({ isOpen, onClose }) {
         </nav>
 
         {/* Monogram at bottom */}
-        <div className="p-8 pb-12">
+        <div className="p-8 pb-12 h-36">
           <Image
-            src="/StudioWu_Monogram_White_1000px.png"
+            src="/StudioWu_Monogram_White_100px.png"
             alt="Studio Wu Monogram"
             width={60}
             height={0}
