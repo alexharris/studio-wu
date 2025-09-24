@@ -47,3 +47,10 @@ export default async function Projects() {
     </>
   );
 }
+
+// Metadata for the page
+export const metadata = {
+  title: 'Projects - Studio Wu',
+  description: 'Studio Wu Projects',
+}
+

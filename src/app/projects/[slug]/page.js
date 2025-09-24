@@ -58,3 +58,15 @@ export async function generateStaticParams() {
     slug: project.slug,
   }));
 }
+
+// Metadata for the page
+export async function generateMetadata({ params }) {
+  const { slug } = params;
+  const project = await client.fetch(getProjectBySlugQuery, { slug });
+  
+  return {
+    title: `${project?.title || 'Project'} - Studio Wu`,
+    description: 'Learn more about Studio Wu',
+  };
+}
+

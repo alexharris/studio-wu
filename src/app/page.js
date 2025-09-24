@@ -41,3 +41,10 @@ export default function Home() {
     </>
   );
 }
+
+// Metadata for the page
+export const metadata = {
+  title: 'Home - Studio Wu',
+  description: 'Studio Wu is an interior design studio in the San Francisco Bay Area',
+}
+

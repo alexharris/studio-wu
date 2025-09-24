@@ -47,3 +47,9 @@ export default async function Press() {
     </>
   );
 }
+
+// Metadata for the page
+export const metadata = {
+  title: 'Press - Studio Wu',
+  description: 'Press for Studio Wu',
+}
