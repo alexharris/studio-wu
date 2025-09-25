@@ -34,6 +34,9 @@ export default async function Contact() {
   );
 }
 
+// Force dynamic rendering - fetch fresh content on every request
+export const dynamic = 'force-dynamic';
+
 // Metadata for the page
 export const metadata = {
   title: 'Contact - Studio Wu',

@@ -46,18 +46,8 @@ export default async function Project({ params }) {
   );
 }
 
-// Generate static params for all projects (optional, for better performance)
-export async function generateStaticParams() {
-  const projects = await client.fetch(`
-    *[_type == "project" && defined(slug.current)]{
-      "slug": slug.current
-    }
-  `);
-
-  return projects.map((project) => ({
-    slug: project.slug,
-  }));
-}
+// Force dynamic rendering - fetch fresh content on every request
+export const dynamic = 'force-dynamic';
 
 // Metadata for the page
 export async function generateMetadata({ params }) {

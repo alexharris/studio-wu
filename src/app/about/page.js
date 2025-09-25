@@ -22,6 +22,9 @@ export default async function About() {
   );
 }
 
+// Force dynamic rendering - fetch fresh content on every request
+export const dynamic = 'force-dynamic';
+
 // Metadata for the page
 export const metadata = {
   title: 'About - Studio Wu',
