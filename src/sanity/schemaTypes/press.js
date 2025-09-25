@@ -76,7 +76,7 @@ export default defineType({
       title: 'Published Date, New',
       name: 'publishedAtDesc',
       by: [
-        {field: 'publishedAt', direction: 'desc'}
+        {field: 'date', direction: 'desc'}
       ]
     },
   ],
