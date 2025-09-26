@@ -9,7 +9,7 @@ const FullWidthImageBlock = ({ block }) => {
   if (!image) return null;
 
   return (
-    <div className="mb-12 md:mb-24 ">
+    <div className="content-block mb-12 md:mb-24 ">
       <Image
         src={urlFor(image).url()}
         alt={alt || 'Content image'}
@@ -29,7 +29,7 @@ const TwoColumnImageBlock = ({ block }) => {
   if (!leftImage || !rightImage) return null;
 
   return (
-    <div className="mb-12 md:mb-24 ">
+    <div className="content-block mb-12 md:mb-24 ">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
         <div>
           <Image
@@ -63,7 +63,7 @@ const CenteredImageBlock = ({ block }) => {
   if (!image) return null;
 
   return (
-    <div className="mb-12 md:mb-24  flex flex-col items-center">
+    <div className="content-block mb-12 md:mb-24  flex flex-col items-center">
       <div className={`${maxWidth} w-full`}>
         <Image
           src={urlFor(image).url()}
@@ -100,7 +100,7 @@ const PullQuoteBlock = ({ block }) => {
   };
 
   return (
-    <div className="mb-12 md:mb-24 py-8">
+    <div className="content-block mb-12 md:mb-24 py-8">
       <blockquote className="text-center max-w-4xl mx-auto">
         <PortableText 
           value={quote} 
@@ -213,7 +213,7 @@ const ImageTextBlock = ({ block }) => {
   );
 
   return (
-    <div className="mb-12 md:mb-24 ">
+    <div className="content-block mb-12 md:mb-24 ">
       <div className="flex flex-col md:flex-row items-start gap-6 md:gap-8">
         {layout === 'image-left' ? (
           <>
@@ -282,7 +282,7 @@ const ImageQuoteBlock = ({ block }) => {
   );
 
   return (
-    <div className="mb-12 md:mb-24 ">
+    <div className="content-block mb-12 md:mb-24 ">
       <div className="flex flex-col md:flex-row items-start gap-6 md:gap-8">
         {layout === 'image-left' ? (
           <>
