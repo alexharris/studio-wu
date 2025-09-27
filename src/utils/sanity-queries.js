@@ -70,16 +70,23 @@ export const getProjectBySlugQuery = groq`
         attribution,
         size
       },
-      _type == "imageQuote" => {
-        image{
+      _type == "imageQuoteImage" => {
+        leftImage{
           asset->{
             _id,
             url
           }
         },
-        alt,
+        leftAlt,
         quote,
         attribution,
+        rightImage{
+          asset->{
+            _id,
+            url
+          }
+        },
+        rightAlt,
         layout
       },
       _type == "imageText" => {
@@ -145,16 +152,23 @@ export const getAboutPageQuery = groq`
         attribution,
         size
       },
-      _type == "imageQuote" => {
-        image{
+      _type == "imageQuoteImage" => {
+        leftImage{
           asset->{
             _id,
             url
           }
         },
-        alt,
+        leftAlt,
         quote,
         attribution,
+        rightImage{
+          asset->{
+            _id,
+            url
+          }
+        },
+        rightAlt,
         layout
       },
       _type == "imageText" => {

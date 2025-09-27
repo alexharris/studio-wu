@@ -257,7 +257,7 @@ export default defineType({
         },
         {
           name: 'imageQuote',
-          title: 'Image & Quote',
+          title: 'Image & Quote Block',
           type: 'object',
           fields: [
             {
@@ -431,6 +431,105 @@ export default defineType({
                 title: truncatedText || 'Image & Text',
                 subtitle: `${layoutLabel}`,
                 media: image,
+              };
+            },
+          },
+        },
+        {
+          name: 'imageQuoteImage',
+          title: 'Image Quote Image Block',
+          type: 'object',
+          fields: [
+            {
+              name: 'leftImage',
+              title: 'Quote Section Image',
+              type: 'image',
+              options: {
+                hotspot: true,
+              },
+              validation: Rule => Rule.required(),
+              description: 'Image that appears above the quote in the left column',
+            },
+            {
+              name: 'leftAlt',
+              title: 'Quote Section Image Alt Text',
+              type: 'string',
+              description: 'Alternative text for the quote section image',
+            },
+            {
+              name: 'quote',
+              title: 'Quote Text',
+              type: 'array',
+              of: [
+                {
+                  type: 'block',
+                  styles: [
+                    {title: 'Normal', value: 'normal'},
+                  ],
+                  lists: [],
+                  marks: {
+                    decorators: [
+                      {title: 'Strong', value: 'strong'},
+                      {title: 'Emphasis', value: 'em'},
+                    ],
+                    annotations: [],
+                  },
+                }
+              ],
+              validation: Rule => Rule.required(),
+              description: 'Large quote text that appears below the left image',
+            },
+            {
+              name: 'attribution',
+              title: 'Quote Attribution',
+              type: 'string',
+              description: 'Optional attribution for the quote (author, source, etc.)',
+            },
+            {
+              name: 'rightImage',
+              title: 'Side Image',
+              type: 'image',
+              options: {
+                hotspot: true,
+              },
+              validation: Rule => Rule.required(),
+              description: 'Image that appears in the right column',
+            },
+            {
+              name: 'rightAlt',
+              title: 'Side Image Alt Text',
+              type: 'string',
+              description: 'Alternative text for the side image',
+            },
+            {
+              name: 'layout',
+              title: 'Layout',
+              type: 'string',
+              options: {
+                list: [
+                  {title: 'Quote Section Left, Single Image Right', value: 'quote-left'},
+                  {title: 'Single Image Left, Quote Section Right', value: 'quote-right'},
+                ],
+              },
+              initialValue: 'quote-left',
+              description: 'Choose which side the quote section and single image appear on',
+            },
+          ],
+          preview: {
+            select: {
+              leftImage: 'leftImage',
+              rightImage: 'rightImage',
+              quote: 'quote',
+              attribution: 'attribution',
+            },
+            prepare(selection) {
+              const {leftImage, quote, attribution} = selection;
+              const plainText = quote?.[0]?.children?.[0]?.text || '';
+              const truncatedQuote = plainText.length > 40 ? plainText.substring(0, 40) + '...' : plainText;
+              return {
+                title: truncatedQuote || 'Quote & Image Block',
+                subtitle: `3/5 Quote + 2/5 Image${attribution ? ` - ${attribution}` : ''}`,
+                media: leftImage,
               };
             },
           },

@@ -248,24 +248,25 @@ export default defineType({
           },
         },
         {
-          name: 'imageQuote',
-          title: 'Image & Quote',
+          name: 'imageQuoteImage',
+          title: 'Image Quote Image Block',
           type: 'object',
           fields: [
             {
-              name: 'image',
-              title: 'Image',
+              name: 'leftImage',
+              title: 'Quote Section Image',
               type: 'image',
               options: {
                 hotspot: true,
               },
               validation: Rule => Rule.required(),
+              description: 'Image that appears above the quote in the left column',
             },
             {
-              name: 'alt',
-              title: 'Image Alt Text',
+              name: 'leftAlt',
+              title: 'Quote Section Image Alt Text',
               type: 'string',
-              description: 'Alternative text for accessibility',
+              description: 'Alternative text for the quote section image',
             },
             {
               name: 'quote',
@@ -288,13 +289,29 @@ export default defineType({
                 }
               ],
               validation: Rule => Rule.required(),
-              description: 'The quote text with rich formatting',
+              description: 'Large quote text that appears below the left image',
             },
             {
               name: 'attribution',
-              title: 'Attribution',
+              title: 'Quote Attribution',
               type: 'string',
-              description: 'Optional attribution (author, source, etc.)',
+              description: 'Optional attribution for the quote (author, source, etc.)',
+            },
+            {
+              name: 'rightImage',
+              title: 'Side Image',
+              type: 'image',
+              options: {
+                hotspot: true,
+              },
+              validation: Rule => Rule.required(),
+              description: 'Image that appears in the right column',
+            },
+            {
+              name: 'rightAlt',
+              title: 'Side Image Alt Text',
+              type: 'string',
+              description: 'Alternative text for the side image',
             },
             {
               name: 'layout',
@@ -302,30 +319,29 @@ export default defineType({
               type: 'string',
               options: {
                 list: [
-                  {title: 'Image Left, Quote Right', value: 'image-left'},
-                  {title: 'Quote Left, Image Right', value: 'quote-left'},
+                  {title: 'Quote Section Left, Single Image Right', value: 'quote-left'},
+                  {title: 'Single Image Left, Quote Section Right', value: 'quote-right'},
                 ],
               },
-              initialValue: 'image-left',
-              description: 'Choose which side the image and quote appear on',
+              initialValue: 'quote-left',
+              description: 'Choose which side the quote section and single image appear on',
             },
           ],
           preview: {
             select: {
-              image: 'image',
+              leftImage: 'leftImage',
+              rightImage: 'rightImage',
               quote: 'quote',
               attribution: 'attribution',
-              layout: 'layout',
             },
             prepare(selection) {
-              const {image, quote, attribution, layout} = selection;
-              const layoutLabel = layout === 'image-left' ? 'Image Left' : 'Quote Left';
+              const {leftImage, quote, attribution} = selection;
               const plainText = quote?.[0]?.children?.[0]?.text || '';
-              const truncatedQuote = plainText.length > 30 ? plainText.substring(0, 30) + '...' : plainText;
+              const truncatedQuote = plainText.length > 40 ? plainText.substring(0, 40) + '...' : plainText;
               return {
-                title: truncatedQuote || 'Image & Quote',
-                subtitle: `${layoutLabel}${attribution ? ` - ${attribution}` : ''}`,
-                media: image,
+                title: truncatedQuote || 'Quote & Image Block',
+                subtitle: `3/5 Quote + 2/5 Image${attribution ? ` - ${attribution}` : ''}`,
+                media: leftImage,
               };
             },
           },
