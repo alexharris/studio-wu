@@ -100,6 +100,98 @@ const ThreeImagesBlock = ({ block }) => {
   );
 };
 
+// Component to render a quote with two images block
+const QuoteTwoImagesBlock = ({ block }) => {
+  const { quote, attribution, leftImage, leftAlt, rightImage, rightAlt, layout = 'quote-left' } = block;
+  
+  if (!quote || !leftImage || !rightImage) return null;
+
+  // Standard body text styling for PortableText rendering
+  const portableTextComponents = {
+    block: {
+      normal: ({ children }) => (
+        <p className="text-xl md:text-2xl leading-relaxed mb-4">
+          "{children}"
+        </p>
+      ),
+    },
+    marks: {
+      strong: ({ children }) => <strong className="font-medium">{children}</strong>,
+      em: ({ children }) => <em className="italic">{children}</em>,
+    },
+  };
+
+  const quoteElement = (
+    <div className="flex flex-col justify-center h-full text-center">
+      <blockquote>
+        <PortableText 
+          value={quote} 
+          components={portableTextComponents}
+        />
+        {attribution && (
+          <cite className="text-base text-gray-600 not-italic">
+            — {attribution}
+          </cite>
+        )}
+      </blockquote>
+    </div>
+  );
+
+  const leftImageElement = (
+    <div>
+      <Image
+        src={urlFor(leftImage).url()}
+        alt={leftAlt || 'Left image'}
+        width={0}
+        height={0}
+        sizes="(max-width: 768px) 100vw, 33vw"
+        className="w-full h-auto"
+      />
+    </div>
+  );
+
+  const rightImageElement = (
+    <div>
+      <Image
+        src={urlFor(rightImage).url()}
+        alt={rightAlt || 'Right image'}
+        width={0}
+        height={0}
+        sizes="(max-width: 768px) 100vw, 33vw"
+        className="w-full h-auto"
+      />
+    </div>
+  );
+
+  return (
+    <div className="content-block mb-12 md:mb-24 ">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
+        {layout === 'quote-left' && (
+          <>
+            {quoteElement}
+            {leftImageElement}
+            {rightImageElement}
+          </>
+        )}
+        {layout === 'quote-center' && (
+          <>
+            {leftImageElement}
+            {quoteElement}
+            {rightImageElement}
+          </>
+        )}
+        {layout === 'quote-right' && (
+          <>
+            {leftImageElement}
+            {rightImageElement}
+            {quoteElement}
+          </>
+        )}
+      </div>
+    </div>
+  );
+};
+
 // Component to render a centered image block
 const CenteredImageBlock = ({ block }) => {
   const { image, alt, maxWidth = 'max-w-lg' } = block;
@@ -441,6 +533,8 @@ export default function ContentBlocks({ blocks }) {
             return <TwoColumnImageBlock key={block._key} block={block} />;
           case 'threeImages':
             return <ThreeImagesBlock key={block._key} block={block} />;
+          case 'quoteTwoImages':
+            return <QuoteTwoImagesBlock key={block._key} block={block} />;
           case 'centeredImage':
             return <CenteredImageBlock key={block._key} block={block} />;
           case 'pullQuote':

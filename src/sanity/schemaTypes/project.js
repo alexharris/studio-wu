@@ -196,6 +196,106 @@ export default defineType({
           },
         },
         {
+          name: 'quoteTwoImages',
+          title: 'Quote with Two Images',
+          type: 'object',
+          fields: [
+            {
+              name: 'quote',
+              title: 'Quote Text',
+              type: 'array',
+              of: [
+                {
+                  type: 'block',
+                  styles: [
+                    {title: 'Normal', value: 'normal'},
+                  ],
+                  lists: [],
+                  marks: {
+                    decorators: [
+                      {title: 'Strong', value: 'strong'},
+                      {title: 'Emphasis', value: 'em'},
+                    ],
+                    annotations: [],
+                  },
+                }
+              ],
+              validation: Rule => Rule.required(),
+              description: 'The quote text with rich formatting',
+            },
+            {
+              name: 'attribution',
+              title: 'Attribution',
+              type: 'string',
+              description: 'Optional attribution (author, source, etc.)',
+            },
+            {
+              name: 'leftImage',
+              title: 'Left Image',
+              type: 'image',
+              options: {
+                hotspot: true,
+              },
+              validation: Rule => Rule.required(),
+            },
+            {
+              name: 'leftAlt',
+              title: 'Left Image Alt Text',
+              type: 'string',
+              description: 'Alternative text for left image',
+            },
+            {
+              name: 'rightImage',
+              title: 'Right Image',
+              type: 'image',
+              options: {
+                hotspot: true,
+              },
+              validation: Rule => Rule.required(),
+            },
+            {
+              name: 'rightAlt',
+              title: 'Right Image Alt Text',
+              type: 'string',
+              description: 'Alternative text for right image',
+            },
+            {
+              name: 'layout',
+              title: 'Layout',
+              type: 'string',
+              options: {
+                list: [
+                  {title: 'Quote Left', value: 'quote-left'},
+                  {title: 'Quote Center', value: 'quote-center'},
+                  {title: 'Quote Right', value: 'quote-right'},
+                ],
+              },
+              initialValue: 'quote-left',
+              description: 'Position of the quote column',
+            },
+          ],
+          preview: {
+            select: {
+              quote: 'quote',
+              attribution: 'attribution',
+              leftImage: 'leftImage',
+              layout: 'layout',
+            },
+            prepare(selection) {
+              const {quote, attribution, leftImage, layout} = selection;
+              const layoutLabel = layout === 'quote-left' ? 'Quote Left' :
+                                 layout === 'quote-center' ? 'Quote Center' : 'Quote Right';
+              const quoteText = quote && quote[0]?.children?.[0]?.text ? 
+                               quote[0].children[0].text.substring(0, 50) + '...' : 'Quote';
+              return {
+                title: attribution || quoteText,
+                subtitle: `Quote + Two Images (${layoutLabel})`,
+                media: leftImage,
+              };
+            },
+          },
+        },
+        {
           name: 'centeredImage',
           title: 'Centered Image',
           type: 'object',
