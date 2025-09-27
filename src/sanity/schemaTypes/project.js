@@ -128,6 +128,74 @@ export default defineType({
           },
         },
         {
+          name: 'threeImages',
+          title: 'Three Images',
+          type: 'object',
+          fields: [
+            {
+              name: 'leftImage',
+              title: 'Left Image',
+              type: 'image',
+              options: {
+                hotspot: true,
+              },
+              validation: Rule => Rule.required(),
+            },
+            {
+              name: 'leftAlt',
+              title: 'Left Image Alt Text',
+              type: 'string',
+              description: 'Alternative text for left image',
+            },
+            {
+              name: 'centerImage',
+              title: 'Center Image',
+              type: 'image',
+              options: {
+                hotspot: true,
+              },
+              validation: Rule => Rule.required(),
+            },
+            {
+              name: 'centerAlt',
+              title: 'Center Image Alt Text',
+              type: 'string',
+              description: 'Alternative text for center image',
+            },
+            {
+              name: 'rightImage',
+              title: 'Right Image',
+              type: 'image',
+              options: {
+                hotspot: true,
+              },
+              validation: Rule => Rule.required(),
+            },
+            {
+              name: 'rightAlt',
+              title: 'Right Image Alt Text',
+              type: 'string',
+              description: 'Alternative text for right image',
+            },
+          ],
+          preview: {
+            select: {
+              leftImage: 'leftImage',
+              centerImage: 'centerImage',
+              rightImage: 'rightImage',
+              leftAlt: 'leftAlt',
+            },
+            prepare(selection) {
+              const {leftImage, leftAlt} = selection;
+              return {
+                title: leftAlt || 'Three Images',
+                subtitle: 'Three Column Block',
+                media: leftImage,
+              };
+            },
+          },
+        },
+        {
           name: 'centeredImage',
           title: 'Centered Image',
           type: 'object',

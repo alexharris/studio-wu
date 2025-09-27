@@ -89,6 +89,29 @@ export const getProjectBySlugQuery = groq`
         rightAlt,
         layout
       },
+      _type == "threeImages" => {
+        leftImage{
+          asset->{
+            _id,
+            url
+          }
+        },
+        leftAlt,
+        centerImage{
+          asset->{
+            _id,
+            url
+          }
+        },
+        centerAlt,
+        rightImage{
+          asset->{
+            _id,
+            url
+          }
+        },
+        rightAlt
+      },
       _type == "imageText" => {
         image{
           asset->{
@@ -170,6 +193,29 @@ export const getAboutPageQuery = groq`
         },
         rightAlt,
         layout
+      },
+      _type == "threeImages" => {
+        leftImage{
+          asset->{
+            _id,
+            url
+          }
+        },
+        leftAlt,
+        centerImage{
+          asset->{
+            _id,
+            url
+          }
+        },
+        centerAlt,
+        rightImage{
+          asset->{
+            _id,
+            url
+          }
+        },
+        rightAlt
       },
       _type == "imageText" => {
         image{
