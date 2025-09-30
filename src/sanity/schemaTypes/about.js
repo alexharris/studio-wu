@@ -32,42 +32,6 @@ export default defineType({
       type: 'array',
       of: [
         {
-          name: 'fullWidthImage',
-          title: 'Full Width Image',
-          type: 'object',
-          fields: [
-            {
-              name: 'image',
-              title: 'Image',
-              type: 'image',
-              options: {
-                hotspot: true,
-              },
-              validation: Rule => Rule.required(),
-            },
-            {
-              name: 'alt',
-              title: 'Alt Text',
-              type: 'string',
-              description: 'Alternative text for accessibility',
-            },
-          ],
-          preview: {
-            select: {
-              title: 'alt',
-              media: 'image',
-            },
-            prepare(selection) {
-              const {title, media} = selection;
-              return {
-                title: title || 'Full Width Image',
-                subtitle: 'Image Block',
-                media: media,
-              };
-            },
-          },
-        },
-        {
           name: 'twoColumnImage',
           title: 'Two Column Images',
           type: 'object',
@@ -101,6 +65,19 @@ export default defineType({
               title: 'Right Image Alt Text',
               type: 'string',
               description: 'Alternative text for right image',
+            },
+            {
+              name: 'imageSize',
+              title: 'Image Size',
+              type: 'string',
+              options: {
+                list: [
+                  {title: 'Original', value: 'none'},
+                  {title: 'Medium (3/4)', value: 'max-w-9/12'},
+                  {title: 'Small (1/2)', value: 'max-w-1/2'},
+                ],
+              },
+              initialValue: 'none',
             },
           ],
           preview: {
@@ -154,6 +131,19 @@ export default defineType({
               },
               initialValue: 'max-w-lg',
               description: 'Maximum width of the centered image',
+            },
+            {
+              name: 'imageSize',
+              title: 'Image Size',
+              type: 'string',
+              options: {
+                list: [
+                  {title: 'Original', value: 'none'},
+                  {title: 'Medium (3/4)', value: 'max-w-9/12'},
+                  {title: 'Small (1/2)', value: 'max-w-1/2'},
+                ],
+              },
+              initialValue: 'none',
             },
           ],
           preview: {
@@ -326,6 +316,19 @@ export default defineType({
               initialValue: 'quote-left',
               description: 'Choose which side the quote section and single image appear on',
             },
+            {
+              name: 'imageSize',
+              title: 'Image Size',
+              type: 'string',
+              options: {
+                list: [
+                  {title: 'Original', value: 'none'},
+                  {title: 'Medium (3/4)', value: 'max-w-9/12'},
+                  {title: 'Small (1/2)', value: 'max-w-1/2'},
+                ],
+              },
+              initialValue: 'none',
+            },
           ],
           preview: {
             select: {
@@ -422,6 +425,19 @@ export default defineType({
               },
               initialValue: 'image-left',
               description: 'Choose which side the image and text appear on',
+            },
+            {
+              name: 'imageSize',
+              title: 'Image Size',
+              type: 'string',
+              options: {
+                list: [
+                  {title: 'Original', value: 'none'},
+                  {title: 'Medium (3/4)', value: 'max-w-9/12'},
+                  {title: 'Small (1/2)', value: 'max-w-1/2'},
+                ],
+              },
+              initialValue: 'none',
             },
           ],
           preview: {

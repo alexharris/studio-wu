@@ -1,5 +1,4 @@
 import {
-  FullWidthImageBlock,
   TwoColumnImageBlock,
   ThreeImagesBlock,
   QuoteTwoImagesBlock,
@@ -20,8 +19,6 @@ export default function ContentBlocks({ blocks }) {
     <div className="content-blocks">
       {blocks.map((block) => {
         switch (block._type) {
-          case 'fullWidthImage':
-            return <FullWidthImageBlock key={block._key} block={block} />;
           case 'twoColumnImage':
             return <TwoColumnImageBlock key={block._key} block={block} />;
           case 'threeImages':

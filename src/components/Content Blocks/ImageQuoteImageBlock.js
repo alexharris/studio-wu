@@ -4,9 +4,24 @@ import { urlFor } from "../../sanity/lib/image";
 
 // Component to render a two-column block with image + quote (3/5) and single image (2/5)
 export default function ImageQuoteImageBlock({ block }) {
-  const { leftImage, leftAlt, quote, attribution, rightImage, rightAlt, layout = 'quote-left' } = block;
+  const { leftImage, leftAlt, quote, attribution, rightImage, rightAlt, layout = 'quote-left', imageSize } = block;
   
   if (!leftImage || !quote || !rightImage) return null;
+
+  // Determine the width class based on imageSize selection
+  const getWidthClass = (size) => {
+    switch (size) {
+      case 'max-w-9/12':
+        return 'md:max-w-9/12';
+      case 'max-w-1/2':
+        return 'md:max-w-1/2';
+      case 'none':
+      default:
+        return 'w-full';
+    }
+  };
+
+  const widthClass = getWidthClass(imageSize);
 
   // Custom components for PortableText rendering (large quote)
   const portableTextComponents = {
@@ -65,8 +80,8 @@ export default function ImageQuoteImageBlock({ block }) {
   );
 
   return (
-    <div className="content-block mb-12 md:mb-24">
-      <div className="grid grid-cols-1 md:grid-cols-5 gap-6 md:gap-8">
+    <div className={`content-block mb-12 md:mb-24 flex self-center justify-center ${widthClass}`}>
+      <div className="grid grid-cols-1 md:grid-cols-5 gap-6 md:gap-8 w-full">
         {layout === 'quote-left' ? (
           <>
             {quoteSection}

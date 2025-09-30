@@ -3,13 +3,28 @@ import { urlFor } from "../../sanity/lib/image";
 
 // Component to render a three column image block
 export default function ThreeImagesBlock({ block }) {
-  const { leftImage, leftAlt, centerImage, centerAlt, rightImage, rightAlt } = block;
+  const { leftImage, leftAlt, centerImage, centerAlt, rightImage, rightAlt, imageSize } = block;
   
   if (!leftImage || !centerImage || !rightImage) return null;
 
+  // Determine the width class based on imageSize selection
+  const getWidthClass = (size) => {
+    switch (size) {
+      case 'max-w-9/12':
+        return 'md:max-w-9/12';
+      case 'max-w-1/2':
+        return 'md:max-w-1/2';
+      case 'none':
+      default:
+        return 'w-full';
+    }
+  };
+
+  const widthClass = getWidthClass(imageSize);
+
   return (
-    <div className="content-block mb-12 md:mb-24 ">
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
+    <div className={`content-block mb-12 md:mb-24 flex self-center justify-center ${widthClass}`}>
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 w-full">
         <div>
           <Image
             src={urlFor(leftImage).url()}

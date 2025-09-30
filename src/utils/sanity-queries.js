@@ -30,16 +30,6 @@ export const getProjectBySlugQuery = groq`
     contentBlocks[]{
       _type,
       _key,
-      _type == "fullWidthImage" => {
-        image{
-          asset->{
-            _id,
-            url
-          }
-        },
-        alt,
-        imageSize
-      },
       _type == "twoColumnImage" => {
         leftImage{
           asset->{
@@ -54,7 +44,9 @@ export const getProjectBySlugQuery = groq`
             url
           }
         },
-        rightAlt        
+        rightAlt,
+        leftImageSize,
+        rightImageSize
       },
       _type == "centeredImage" => {
         image{
@@ -64,7 +56,8 @@ export const getProjectBySlugQuery = groq`
           }
         },
         alt,
-        maxWidth
+        maxWidth,
+        imageSize
       },
       _type == "pullQuote" => {
         quote,
@@ -141,7 +134,21 @@ export const getProjectBySlugQuery = groq`
         },
         alt,
         text,
-        layout
+        layout,
+        imageSize
+      },
+      _type == "quoteImage" => {
+        image{
+          asset->{
+            _id,
+            url
+          }
+        },
+        alt,
+        quote,
+        attribution,
+        layout,
+        imageSize
       }
     }
   }
@@ -155,15 +162,6 @@ export const getAboutPageQuery = groq`
     contentBlocks[]{
       _type,
       _key,
-      _type == "fullWidthImage" => {
-        image{
-          asset->{
-            _id,
-            url
-          }
-        },
-        alt
-      },
       _type == "twoColumnImage" => {
         leftImage{
           asset->{
@@ -178,7 +176,9 @@ export const getAboutPageQuery = groq`
             url
           }
         },
-        rightAlt        
+        rightAlt,
+        leftImageSize,
+        rightImageSize
       },
       _type == "centeredImage" => {
         image{
@@ -188,7 +188,8 @@ export const getAboutPageQuery = groq`
           }
         },
         alt,
-        maxWidth
+        maxWidth,
+        imageSize
       },
       _type == "pullQuote" => {
         quote,
@@ -265,7 +266,8 @@ export const getAboutPageQuery = groq`
         },
         alt,
         text,
-        layout
+        layout,
+        imageSize
       }
     }
   }

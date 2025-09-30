@@ -4,9 +4,24 @@ import { urlFor } from "../../sanity/lib/image";
 
 // Component to render an image and quote block
 export default function QuoteImageBlock({ block }) {
-  const { image, alt, quote, attribution, layout = 'image-left' } = block;
+  const { image, alt, quote, attribution, layout = 'image-left', imageSize } = block;
   
   if (!image || !quote) return null;
+
+  // Determine the width class based on imageSize selection
+  const getWidthClass = (size) => {
+    switch (size) {
+      case 'max-w-9/12':
+        return 'md:max-w-9/12';
+      case 'max-w-1/2':
+        return 'md:max-w-1/2';
+      case 'none':
+      default:
+        return 'w-full';
+    }
+  };
+
+  const widthClass = getWidthClass(imageSize);
 
   // Custom components for PortableText rendering (medium size)
   const portableTextComponents = {
@@ -53,8 +68,8 @@ export default function QuoteImageBlock({ block }) {
   );
 
   return (
-    <div className="content-block mb-12 md:mb-24 ">
-      <div className="flex flex-col md:flex-row items-start gap-6 md:gap-8">
+    <div className={`content-block mb-12 md:mb-24 flex self-center justify-center ${widthClass}`}>
+      <div className="flex flex-col md:flex-row items-start gap-6 md:gap-8 w-full">
         {layout === 'image-left' ? (
           <>
             {imageElement}
