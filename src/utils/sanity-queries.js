@@ -37,7 +37,8 @@ export const getProjectBySlugQuery = groq`
             url
           }
         },
-        alt
+        alt,
+        imageSize
       },
       _type == "twoColumnImage" => {
         leftImage{

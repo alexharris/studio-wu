@@ -59,6 +59,19 @@ export default defineType({
               type: 'string',
               description: 'Alternative text for accessibility',
             },
+            {
+              name: 'imageSize',
+              title: 'Image Size',
+              type: 'string',
+              options: {
+                list: [
+                  {title: 'Original', value: 'none'},
+                  {title: 'Medium (3/4)', value: 'max-w-9/12'},
+                  {title: 'Small (1/2)', value: 'max-w-1/2'},
+                ],
+              },
+              initialValue: 'none',
+            },
           ],
           preview: {
             select: {
