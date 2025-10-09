@@ -20,10 +20,10 @@ export default async function Projects() {
                   {project.featuredImage && (
                     <Link href={`/projects/${project.slug?.current}`} className="block">
                       <Image
-                        src={urlFor(project.featuredImage).url()}
+                        src={urlFor(project.featuredImage).width(600).height(450).url()}
                         alt={project.title || 'Project image'}
-                        width={300}
-                        height={200}
+                        width={1200}
+                        height={900}
                         className="w-full mb-4"
                       />
                     </Link>
