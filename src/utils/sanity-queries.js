@@ -1,5 +1,109 @@
 import {groq} from 'next-sanity'
 
+// Fragment for content blocks to avoid repetition
+const contentBlocksFragment = groq`
+  contentBlocks[]{
+    _type,
+    _key,
+    _type == "twoColumnImage" => {
+      leftImage{
+        asset,
+        crop,
+        hotspot
+      },
+      leftAlt,
+      rightImage{
+        asset,
+        crop,
+        hotspot
+      },
+      rightAlt,
+      leftImageSize,
+      rightImageSize
+    },
+    _type == "centeredImage" => {
+      image{
+        asset,
+        crop,
+        hotspot
+      },
+      alt,
+      maxWidth,
+      imageSize
+    },
+    _type == "pullQuote" => {
+      quote,
+      attribution,
+      size
+    },
+    _type == "imageQuoteImage" => {
+      leftImage{
+        asset,
+        crop,
+        hotspot
+      },
+      leftAlt,
+      quote,
+      attribution,
+      rightImage{
+        asset,
+        crop,
+        hotspot
+      },
+      rightAlt,
+      layout
+    },
+    _type == "threeImages" => {
+      leftImage{
+        asset,
+        crop,
+        hotspot
+      },
+      leftAlt,
+      centerImage{
+        asset,
+        crop,
+        hotspot
+      },
+      centerAlt,
+      rightImage{
+        asset,
+        crop,
+        hotspot
+      },
+      rightAlt
+    },
+    _type == "quoteTwoImages" => {
+      quote,
+      attribution,
+      leftImage{
+        asset,
+        crop,
+        hotspot
+      },
+      leftAlt,
+      rightImage{
+        asset,
+        crop,
+        hotspot
+      },
+      rightAlt,
+      layout
+    },
+    _type == "imageText" => {
+      image{
+        asset,
+        crop,
+        hotspot
+      },
+      alt,
+      text,
+      layout,
+      imageSize
+    }
+  }
+`
+
 export const getAllProjectsQuery = groq`
   *[_type == "project"]{
     _id,
@@ -27,130 +131,7 @@ export const getProjectBySlugQuery = groq`
         url
       }
     },
-    contentBlocks[]{
-      _type,
-      _key,
-      _type == "twoColumnImage" => {
-        leftImage{
-          asset->{
-            _id,
-            url
-          }
-        },
-        leftAlt,
-        rightImage{
-          asset->{
-            _id,
-            url
-          }
-        },
-        rightAlt,
-        leftImageSize,
-        rightImageSize
-      },
-      _type == "centeredImage" => {
-        image{
-          asset->{
-            _id,
-            url
-          }
-        },
-        alt,
-        maxWidth,
-        imageSize
-      },
-      _type == "pullQuote" => {
-        quote,
-        attribution,
-        size
-      },
-      _type == "imageQuoteImage" => {
-        leftImage{
-          asset->{
-            _id,
-            url
-          }
-        },
-        leftAlt,
-        quote,
-        attribution,
-        rightImage{
-          asset->{
-            _id,
-            url
-          }
-        },
-        rightAlt,
-        layout
-      },
-      _type == "threeImages" => {
-        leftImage{
-          asset->{
-            _id,
-            url
-          }
-        },
-        leftAlt,
-        centerImage{
-          asset->{
-            _id,
-            url
-          }
-        },
-        centerAlt,
-        rightImage{
-          asset->{
-            _id,
-            url
-          }
-        },
-        rightAlt
-      },
-      _type == "quoteTwoImages" => {
-        quote,
-        attribution,
-        leftImage{
-          asset->{
-            _id,
-            url
-          }
-        },
-        leftAlt,
-        rightImage{
-          asset->{
-            _id,
-            url
-          }
-        },
-        rightAlt,
-        layout
-      },
-      _type == "imageText" => {
-        image{
-          asset->{
-            _id,
-            url
-          }
-        },
-        alt,
-        text,
-        layout,
-        imageSize
-      },
-      _type == "quoteImage" => {
-        image{
-          asset->{
-            _id,
-            url
-          }
-        },
-        alt,
-        quote,
-        attribution,
-        layout,
-        imageSize
-      }
-    }
+    ${contentBlocksFragment}
   }
 `
 
@@ -159,117 +140,7 @@ export const getAboutPageQuery = groq`
     _id,
     title,
     slug,
-    contentBlocks[]{
-      _type,
-      _key,
-      _type == "twoColumnImage" => {
-        leftImage{
-          asset->{
-            _id,
-            url
-          }
-        },
-        leftAlt,
-        rightImage{
-          asset->{
-            _id,
-            url
-          }
-        },
-        rightAlt,
-        leftImageSize,
-        rightImageSize
-      },
-      _type == "centeredImage" => {
-        image{
-          asset->{
-            _id,
-            url
-          }
-        },
-        alt,
-        maxWidth,
-        imageSize
-      },
-      _type == "pullQuote" => {
-        quote,
-        attribution,
-        size
-      },
-      _type == "imageQuoteImage" => {
-        leftImage{
-          asset->{
-            _id,
-            url
-          }
-        },
-        leftAlt,
-        quote,
-        attribution,
-        rightImage{
-          asset->{
-            _id,
-            url
-          }
-        },
-        rightAlt,
-        layout
-      },
-      _type == "threeImages" => {
-        leftImage{
-          asset->{
-            _id,
-            url
-          }
-        },
-        leftAlt,
-        centerImage{
-          asset->{
-            _id,
-            url
-          }
-        },
-        centerAlt,
-        rightImage{
-          asset->{
-            _id,
-            url
-          }
-        },
-        rightAlt
-      },
-      _type == "quoteTwoImages" => {
-        quote,
-        attribution,
-        leftImage{
-          asset->{
-            _id,
-            url
-          }
-        },
-        leftAlt,
-        rightImage{
-          asset->{
-            _id,
-            url
-          }
-        },
-        rightAlt,
-        layout
-      },
-      _type == "imageText" => {
-        image{
-          asset->{
-            _id,
-            url
-          }
-        },
-        alt,
-        text,
-        layout,
-        imageSize
-      }
-    }
+    ${contentBlocksFragment}
   }
 `
 
