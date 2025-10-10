@@ -105,7 +105,7 @@ const contentBlocksFragment = groq`
 `
 
 export const getAllProjectsQuery = groq`
-  *[_type == "project"]{
+  *[_type == "project"] | order(orderRank){
     _id,
     title,
     slug,
@@ -185,7 +185,7 @@ export const getAdjacentProjectsQuery = groq`
     title,
     slug
   },
-  "allProjects": *[_type == "project"] | order(_createdAt asc){
+  "allProjects": *[_type == "project"] | order(orderRank){
     _id,
     title,
     slug

@@ -1,5 +1,7 @@
+import {orderableDocumentListDeskItem} from '@sanity/orderable-document-list'
+
 // https://www.sanity.io/docs/structure-builder-cheat-sheet
-export const structure = (S) =>
+export const structure = (S, context) =>
   S.list()
     .title('Content')
     .items([
@@ -40,8 +42,15 @@ export const structure = (S) =>
         ),
       // Divider
       S.divider(),
-      // All other document types (Projects, etc.)
+      // Projects with drag and drop ordering
+      orderableDocumentListDeskItem({
+        type: 'project',
+        title: 'Projects',
+        S,
+        context,
+      }),
+      // Press items (if they exist)
       ...S.documentTypeListItems().filter(
-        (listItem) => !['about', 'contact', 'settings'].includes(listItem.getId())
+        (listItem) => !['about', 'contact', 'settings', 'project'].includes(listItem.getId())
       ),
     ])
