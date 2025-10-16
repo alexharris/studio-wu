@@ -400,39 +400,20 @@ export default defineType({
               type: 'string',
               description: 'Optional attribution (author, source, etc.)',
             },
-            {
-              name: 'size',
-              title: 'Text Size',
-              type: 'string',
-              options: {
-                list: [
-                  {title: 'Medium', value: 'text-2xl'},
-                  {title: 'Large', value: 'text-3xl'},
-                  {title: 'XL', value: 'text-4xl'},
-                  {title: 'XXL', value: 'text-5xl'},
-                ],
-              },
-              initialValue: 'text-3xl',
-              description: 'Size of the quote text',
-            },
           ],
           preview: {
             select: {
               quote: 'quote',
               attribution: 'attribution',
-              size: 'size',
             },
             prepare(selection) {
-              const {quote, attribution, size} = selection;
-              const sizeLabel = size === 'text-2xl' ? 'Medium' :
-                               size === 'text-3xl' ? 'Large' :
-                               size === 'text-4xl' ? 'XL' : 'XXL';
+              const {quote, attribution} = selection;
               // Extract plain text from portable text for preview
               const plainText = quote?.[0]?.children?.[0]?.text || '';
               const truncatedQuote = plainText.length > 50 ? plainText.substring(0, 50) + '...' : plainText;
               return {
                 title: truncatedQuote || 'Pull Quote',
-                subtitle: `Quote Block (${sizeLabel})${attribution ? ` - ${attribution}` : ''}`,
+                subtitle: `Quote Block${attribution ? ` - ${attribution}` : ''}`,
               };
             },
           },
