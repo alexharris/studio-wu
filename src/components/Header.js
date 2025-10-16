@@ -25,7 +25,7 @@ export default function Header() {
   if (shouldExclude) return null;
   return (
     <>
-      <header className="flex justify-between items-center p-4 md:p-8 pb-0 pt-4 md:pt-12 mb-20">
+      <header className="flex justify-between items-center p-4 md:p-8 pb-0 pt-4 md:pt-12 mb-12">
         <a href="/">
           <Image
             src="/StudioWu_Logo_Black_1000px.png"
