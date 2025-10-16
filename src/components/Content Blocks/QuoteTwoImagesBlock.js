@@ -46,7 +46,7 @@ export default function QuoteTwoImagesBlock({ block }) {
           components={portableTextComponents}
         />
         {attribution && (
-          <cite className="text-base text-gray-600 not-italic">
+          <cite className="text-base md:text-lg text-gray-600 not-italic">
             — {attribution}
           </cite>
         )}
@@ -81,7 +81,7 @@ export default function QuoteTwoImagesBlock({ block }) {
   );
 
   return (
-    <div className={`content-block mb-12 md:mb-24 flex self-center justify-center ${widthClass}`}>
+    <div className={`content-block quote-two-images-block mb-12 md:mb-24 flex self-center justify-center ${widthClass}`}>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 w-full">
         {layout === 'quote-left' && (
           <>

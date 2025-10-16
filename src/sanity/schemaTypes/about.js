@@ -206,10 +206,10 @@ export default defineType({
               type: 'string',
               options: {
                 list: [
-                  {title: 'Medium', value: 'text-2xl'},
-                  {title: 'Large', value: 'text-3xl'},
-                  {title: 'XL', value: 'text-4xl'},
-                  {title: 'XXL', value: 'text-5xl'},
+                  {title: 'Medium', value: 'text-xl'},
+                  {title: 'Large', value: 'text-2xl'},
+                  {title: 'XL', value: 'text-3xl'},
+                  {title: 'XXL', value: 'text-4xl'},
                 ],
               },
               initialValue: 'text-3xl',
@@ -224,9 +224,9 @@ export default defineType({
             },
             prepare(selection) {
               const {quote, attribution, size} = selection;
-              const sizeLabel = size === 'text-2xl' ? 'Medium' :
-                               size === 'text-3xl' ? 'Large' :
-                               size === 'text-4xl' ? 'XL' : 'XXL';
+              const sizeLabel = size === 'text-xl' ? 'Medium' :
+                               size === 'text-2xl' ? 'Large' :
+                               size === 'text-3xl' ? 'XL' : 'XXL';
               // Extract plain text from portable text for preview
               const plainText = quote?.[0]?.children?.[0]?.text || '';
               const truncatedQuote = plainText.length > 50 ? plainText.substring(0, 50) + '...' : plainText;

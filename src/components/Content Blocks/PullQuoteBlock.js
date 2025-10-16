@@ -2,7 +2,7 @@ import { PortableText } from '@portabletext/react';
 
 // Component to render a pull quote block
 export default function PullQuoteBlock({ block }) {
-  const { quote, attribution, size = 'text-3xl' } = block;
+  const { quote, attribution, size = 'text-2xl' } = block;
   
   if (!quote) return null;
 
@@ -22,14 +22,14 @@ export default function PullQuoteBlock({ block }) {
   };
 
   return (
-    <div className="content-block mb-12 md:mb-24 py-8">
+    <div className="content-block pull-quote-block mb-12 md:mb-24 py-8">
       <blockquote className="text-center max-w-4xl mx-auto">
         <PortableText 
           value={quote} 
           components={portableTextComponents}
         />
         {attribution && (
-          <cite className="text-lg text-gray-600 not-italic">
+          <cite className="text-base md:text-lg text-gray-600 not-italic">
             — {attribution}
           </cite>
         )}

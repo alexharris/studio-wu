@@ -27,7 +27,7 @@ export default function ImageQuoteImageBlock({ block }) {
   const portableTextComponents = {
     block: {
       normal: ({ children }) => (
-        <p className="text-3xl font-light leading-relaxed text-gray-900 mb-4">
+        <p className="text-xl md:text-2xl font-light leading-relaxed text-gray-900 mb-4">
           "{children}"
         </p>
       ),
@@ -51,13 +51,13 @@ export default function ImageQuoteImageBlock({ block }) {
           className="w-full h-auto"
         />
       </div>
-      <blockquote className="text-center">
+      <blockquote className="text-center py-16 md:py-0">
         <PortableText 
           value={quote} 
           components={portableTextComponents}
         />
         {attribution && (
-          <cite className="text-lg text-gray-600 not-italic">
+          <cite className="text-gray-600 not-italic">
             — {attribution}
           </cite>
         )}
@@ -80,8 +80,8 @@ export default function ImageQuoteImageBlock({ block }) {
   );
 
   return (
-    <div className={`content-block mb-12 md:mb-24 flex self-center justify-center ${widthClass}`}>
-      <div className="grid grid-cols-1 md:grid-cols-5 gap-6 md:gap-8 w-full">
+    <div className={`content-block image-quote-image-block mb-12 md:mb-24 flex self-center justify-center ${widthClass}`}>
+      <div className="grid grid-cols-1 md:grid-cols-5 gap-12 md:gap-8 w-full">
         {layout === 'quote-left' ? (
           <>
             {quoteSection}

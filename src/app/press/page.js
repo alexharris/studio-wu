@@ -37,7 +37,7 @@ export default async function Press() {
                 width={0}
                 height={0}
                 sizes="100vw"
-                className="w-3/5 mx-auto"
+                className="w-full md:w-3/5 mx-auto"
               />
             </div>
           </div>

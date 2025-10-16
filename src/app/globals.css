@@ -8,7 +8,7 @@
 
 @theme {
   /* Brand colors */
-  --color-green: #404C35;
+  --color-green: #464d4a;
   --color-taupe: var(--color-taupe);
   --color-background: var(--color-taupe);
   --color-foreground: var(--foreground);
@@ -70,6 +70,7 @@ a:hover {
   z-index: -1;
   object-fit: cover;
   filter: brightness(70%);
+  object-position: center top;
 }
 
 .homepage footer {
@@ -98,4 +99,10 @@ a:hover {
   object-fit: scale-down;
   vertical-align: top;
   display: inline;
+}
+
+/* Limit width of about content */
+#about-page .content-block {
+  max-width: 1400px;
+  margin: 0 auto;
 }

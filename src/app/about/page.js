@@ -12,7 +12,7 @@ export default async function About() {
 
   return (
     <div className="px-4 md:px-8 flex-1">
-      <main>
+      <main id="about-page">
         <h1 className="sr-only">{aboutPage.title}</h1>
         
         {/* Render content blocks */}
