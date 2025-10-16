@@ -10,7 +10,7 @@ export default async function Press() {
     <>
       <div className="px-4 md:px-8 flex-1 w-full mx-auto">
         <main className="">
-          <h1 className="text-4xl mb-24 text-center">Press</h1>
+          <h1 className="text-4xl mb-24 text-center sr-only">Press</h1>
           <div className="flex flex-col md:flex-row-reverse gap-8">
             {pressItems.length > 0 ? (
               <div className="w-full md:w-1/2 flex flex-col gap-8">
@@ -37,7 +37,7 @@ export default async function Press() {
                 width={0}
                 height={0}
                 sizes="100vw"
-                className="w-full md:w-3/5 mx-auto"
+                className="w-full md:w-4/5 lg:w-3/5 mx-auto"
               />
             </div>
           </div>

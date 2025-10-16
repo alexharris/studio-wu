@@ -16,7 +16,7 @@ export default async function Contact() {
   return (
     <div className="px-4 md:px-8 flex-1">
       <main className="w-full flex flex-col items-center">
-        <h1 className="mb-8 text-4xl">{contactPage.title}</h1>
+        <h1 className="mb-8 text-4xl sr-only">{contactPage.title}</h1>
         <p className="mb-8 text-2xl">{settings?.emailAddress || ''}</p>
         <p className="mb-16 text-2xl">{settings?.phoneNumber || ''}</p>
         {/* Render contact image */}

@@ -1,10 +1,12 @@
 "use client";
 
 import { useEffect } from "react";
+import { usePathname } from "next/navigation";
 import Image from "next/image";
 
 
 export default function MobileMenu({ isOpen, onClose }) {
+  const pathname = usePathname();
   // Preload the mobile menu image when component mounts
   useEffect(() => {
     const preloadImage = () => {
@@ -70,7 +72,7 @@ export default function MobileMenu({ isOpen, onClose }) {
             <li>
               <a 
                 href="/projects" 
-                className="block py-2 "
+                className={`block py-2 ${pathname.startsWith('/projects') ? 'active' : ''}`}
                 onClick={onClose}
               >
                 Projects
@@ -79,7 +81,7 @@ export default function MobileMenu({ isOpen, onClose }) {
             <li>
               <a 
                 href="/about" 
-                className="block py-2 "
+                className={`block py-2 ${pathname === '/about' ? 'active' : ''}`}
                 onClick={onClose}
               >
                 About
@@ -87,22 +89,23 @@ export default function MobileMenu({ isOpen, onClose }) {
             </li>
             <li>
               <a 
+                href="/press" 
+                className={`block py-2 ${pathname === '/press' ? 'active' : ''}`}
+                onClick={onClose}
+              >
+                Press
+              </a>
+            </li>            
+            <li>
+              <a 
                 href="/contact" 
-                className="block py-2 "
+                className={`block py-2 ${pathname === '/contact' ? 'active' : ''}`}
                 onClick={onClose}
               >
                 Contact
               </a>
             </li>
-            <li>
-              <a 
-                href="/press" 
-                className="block py-2 "
-                onClick={onClose}
-              >
-                Press
-              </a>
-            </li>
+
             <li>
               <a 
                 href="https://www.instagram.com/studiowuinteriors/" 

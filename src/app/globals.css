@@ -62,15 +62,34 @@ a:hover {
   cursor: pointer;
 }
 
-.homepage-bg {
-  position: fixed;
-  inset: 0;
-  width: 100vw;
-  height: 100vh;
-  z-index: -1;
-  object-fit: cover;
-  filter: brightness(70%);
-  object-position: center top;
+/* Active navigation link styles */
+nav a.active {
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+/* Homepage background using CSS background-image (better approach) */
+.homepage {
+  background-image: 
+    linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)),
+    url('/homepage-bg.jpg');
+  background-size: cover;
+  background-position: center bottom;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  min-height: 100dvh; /* Dynamic viewport height - better for mobile */
+}
+
+/* Mobile homepage background positioning */
+@media (max-width: 768px) {
+  .homepage {
+  background-image: 
+    linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)),
+    url('/homepage-bg-mobile.jpg');    
+    /* background-position: 55% bottom; */
+    background-attachment: scroll; /* Better performance on mobile */
+    min-height: 100svh; /* Small viewport height for mobile */
+  }
 }
 
 .homepage footer {
@@ -100,6 +119,8 @@ a:hover {
   vertical-align: top;
   display: inline;
 }
+
+
 
 /* Limit width of about content */
 #about-page .content-block {

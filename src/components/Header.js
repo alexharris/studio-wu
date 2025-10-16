@@ -39,17 +39,38 @@ export default function Header() {
         <nav className="hidden md:block">
           <ul className="flex items-center gap-4 text-black justify-between w-full angie uppercase text-md">
             <li>
-              <a href="/projects">Projects</a>
+              <a 
+                href="/projects" 
+                className={pathname.startsWith('/projects') ? 'active' : ''}
+              >
+                Projects
+              </a>
             </li>
             <li>
-              <a href="/about">About</a>
+              <a 
+                href="/about" 
+                className={pathname === '/about' ? 'active' : ''}
+              >
+                About
+              </a>
             </li>
             <li>
-              <a href="/contact">Contact</a>
-            </li>
+              <a 
+                href="/press" 
+                className={pathname === '/press' ? 'active' : ''}
+              >
+                Press
+              </a>
+            </li>            
             <li>
-              <a href="/press">Press</a>
+              <a 
+                href="/contact" 
+                className={pathname === '/contact' ? 'active' : ''}
+              >
+                Contact
+              </a>
             </li>
+
             <li>
               <a
                 href="https://www.instagram.com/studiowuinteriors/"
