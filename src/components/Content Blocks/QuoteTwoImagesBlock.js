@@ -27,7 +27,7 @@ export default function QuoteTwoImagesBlock({ block }) {
   const portableTextComponents = {
     block: {
       normal: ({ children }) => (
-        <p className="text-xl md:text-2xl leading-relaxed mb-4">
+        <p className="text-xl md:text-2xl leading-relaxed">
           "{children}"
         </p>
       ),
@@ -39,7 +39,7 @@ export default function QuoteTwoImagesBlock({ block }) {
   };
 
   const quoteElement = (
-    <div className="flex flex-col justify-center h-full text-center">
+    <div className="flex flex-col justify-center h-full text-center py-8 md:py-0">
       <blockquote>
         <PortableText 
           value={quote} 
@@ -82,7 +82,7 @@ export default function QuoteTwoImagesBlock({ block }) {
 
   return (
     <div className={`content-block quote-two-images-block mb-4 md:mb-24 flex self-center justify-center ${widthClass}`}>
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 w-full">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-8 w-full">
         {layout === 'quote-left' && (
           <>
             {quoteElement}
