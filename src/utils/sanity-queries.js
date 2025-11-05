@@ -160,16 +160,10 @@ export const getContactPageQuery = groq`
 `
 
 export const getAllPressQuery = groq`
-  *[_type == "press"] | order(publishedAt desc){
+  *[_type == "press"] | order(orderRank){
     _id,
     title,
     source,
-    image{
-      asset->{
-        _id,
-        url
-      }
-    },
     link{
       text,
       url

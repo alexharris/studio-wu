@@ -49,8 +49,15 @@ export const structure = (S, context) =>
         S,
         context,
       }),
-      // Press items (if they exist)
+      // Press items with drag and drop ordering
+      orderableDocumentListDeskItem({
+        type: 'press',
+        title: 'Press',
+        S,
+        context,
+      }),
+      // Other document types (excluding the ones we've already handled)
       ...S.documentTypeListItems().filter(
-        (listItem) => !['about', 'contact', 'settings', 'project'].includes(listItem.getId())
+        (listItem) => !['about', 'contact', 'settings', 'project', 'press'].includes(listItem.getId())
       ),
     ])

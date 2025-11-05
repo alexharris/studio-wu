@@ -12,13 +12,10 @@ export default defineType({
       validation: Rule => Rule.required(),
     }),
     defineField({
-      name: 'image',
-      title: 'Image',
-      type: 'image',
-      options: {
-        hotspot: true,
-      },
-      validation: Rule => Rule.required(),
+      name: 'orderRank',
+      title: 'Order',
+      type: 'string',
+      hidden: true,
     }),
     defineField({
       name: 'source',
@@ -60,14 +57,12 @@ export default defineType({
     select: {
       title: 'title',
       source: 'source',
-      media: 'image',
     },
     prepare(selection) {
-      const {title, source, media} = selection;
+      const {title, source} = selection;
       return {
         title: title,
         subtitle: source,
-        media: media,
       };
     },
   },
