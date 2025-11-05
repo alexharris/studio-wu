@@ -17,7 +17,7 @@ export default async function Contact() {
     <div className="px-4 md:px-8 flex-1">
       <main className="w-full flex flex-col items-center">
         <h1 className="mb-8 text-4xl sr-only">{contactPage.title}</h1>
-        <p className="my-8 py-6">Get in touch at <a href={`mailto:${settings?.emailAddress || ''}`} className="underline underline-offset-4">{settings?.emailAddress || ''}</a></p>
+        <p className="my-8 pt-4 pb-6">Get in touch at <a href={`mailto:${settings?.emailAddress || ''}`} className="underline underline-offset-4">{settings?.emailAddress || ''}</a></p>
         {/* Render contact image */}
         {contactPage.image && (
 

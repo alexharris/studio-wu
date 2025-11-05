@@ -31,7 +31,7 @@ export default function Footer() {
   
   if (shouldExclude) return null;
   return (
-    <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center bg-green text-white angie p-8 mt-12">
+    <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center bg-green text-white angie p-4 md:p-8 mt-12">
       <div className="flex-1">
         <p>
           {settings?.emailAddress || ''}<br />
