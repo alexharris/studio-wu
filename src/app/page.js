@@ -23,11 +23,11 @@ export default function Home() {
                 <a href="/about">About</a>
               </li>
               <li>
-                <a href="/contact">Contact</a>
-              </li>
-              <li>
                 <a href="/press">Press</a>
               </li>
+              <li>
+                <a href="/contact">Contact</a>
+              </li>              
             </ul>
           </nav>
         </main>
