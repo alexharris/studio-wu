@@ -120,8 +120,8 @@ export default function MobileMenu({ isOpen, onClose }) {
         {/* Monogram at bottom */}
         <div className="p-8 pb-12 h-36">
           <Image
-            src="/StudioWu_Monogram_White_100px.png"
-            alt="Studio Wu Monogram"
+            src="/StudioWu_Seal_White_1000px.png"
+            alt="Studio Wu Seal"
             width={60}
             height={0}
             className="mx-auto"
@@ -130,3 +130,6 @@ export default function MobileMenu({ isOpen, onClose }) {
       </div>
   );
 }
+
+
+

@@ -10,7 +10,7 @@ export default function PullQuoteBlock({ block }) {
   const portableTextComponents = {
     block: {
       normal: ({ children }) => (
-        <p className="text-2xl font-light leading-relaxed text-gray-900 mb-4">
+        <p className="text-xl md:text-2xl font-light leading-relaxed text-gray-900 mb-4">
           "{children}"
         </p>
       ),

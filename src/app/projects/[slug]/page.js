@@ -7,7 +7,7 @@ import ContentBlocks from "../../../components/ContentBlocks";
 import ProjectPagination from "../../../components/ProjectPagination";
 
 export default async function Project({ params }) {
-  const { slug } = params;
+  const { slug } = (await params);
   
   const project = await client.fetch(getProjectBySlugQuery, { slug });
 
@@ -51,7 +51,7 @@ export const dynamic = 'force-dynamic';
 
 // Metadata for the page
 export async function generateMetadata({ params }) {
-  const { slug } = params;
+  const { slug } = (await params);
   const project = await client.fetch(getProjectBySlugQuery, { slug });
   
   return {

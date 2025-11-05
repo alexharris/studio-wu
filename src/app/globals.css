@@ -118,6 +118,10 @@ nav a.active {
   object-fit: scale-down;
   vertical-align: top;
   display: inline;
+  @media (max-width: 768px) {
+    object-fit: cover;
+    max-height: none;
+  }
 }
 
 
