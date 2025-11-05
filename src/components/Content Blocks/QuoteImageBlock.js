@@ -68,8 +68,8 @@ export default function QuoteImageBlock({ block }) {
   );
 
   return (
-    <div className={`content-block quote-image-block mb-12 md:mb-24 flex self-center justify-center ${widthClass}`}>
-      <div className="flex flex-col md:flex-row items-start gap-6 md:gap-8 w-full">
+    <div className={`content-block quote-image-block mb-4 md:mb-24 flex self-center justify-center ${widthClass}`}>
+      <div className="flex flex-col md:flex-row items-start gap-4 md:gap-8 w-full">
         {layout === 'image-left' ? (
           <>
             {imageElement}

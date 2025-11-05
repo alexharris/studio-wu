@@ -22,7 +22,7 @@ export default function PullQuoteBlock({ block }) {
   };
 
   return (
-    <div className="content-block pull-quote-block mb-12 md:mb-24 py-8">
+    <div className="content-block pull-quote-block mb-4 md:mb-24 py-8">
       <blockquote className="text-center max-w-4xl mx-auto">
         <PortableText 
           value={quote} 

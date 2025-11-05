@@ -23,7 +23,7 @@ export default function CenteredImageBlock({ block }) {
   const widthClass = getWidthClass(imageSize);
 
   return (
-    <div className="content-block centered-image-block mb-12 md:mb-24 flex flex-col items-center">
+    <div className="content-block centered-image-block mb-4 md:mb-24 flex flex-col items-center">
 
         <Image
           src={urlFor(image).url()}
