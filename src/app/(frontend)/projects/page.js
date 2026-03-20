@@ -1,8 +1,8 @@
 import Image from "next/image";
 import Link from "next/link";
-import { client } from "../../sanity/lib/client";
-import { urlFor } from "../../sanity/lib/image";
-import { getAllProjectsQuery } from "../../utils/sanity-queries";
+import { client } from "@/sanity/lib/client";
+import { urlFor } from "@/sanity/lib/image";
+import { getAllProjectsQuery } from "@/utils/sanity-queries";
 
 export default async function Projects() {
   const projects = await client.fetch(getAllProjectsQuery);

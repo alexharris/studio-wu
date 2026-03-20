@@ -39,6 +39,10 @@
   font-family: "self", sans-serif;
 }
 
+html {
+  font-size: 80%; /* Scale all rem-based font sizes down ~20% */
+}
+
 body {
   background: var(--background);
   color: var(--foreground);
@@ -54,6 +58,17 @@ blockquote {
 
 h1, h2, h3, h4, h5, h6 {
   font-family: "self", serif;
+}
+
+/* Body copy / prose text — bumps size back up after the 80% root scale.
+   .prose p is explicit to override Tailwind text-* classes on child elements
+   (rem is root-relative, so parent font-size alone won't override them). */
+.prose,
+.prose p,
+.prose li,
+.prose h2 {
+  font-size: 1.15rem;
+  line-height: 1.7;
 }
 
 a:hover {
@@ -111,6 +126,13 @@ nav a.active {
   opacity: 0;
 }
 
+.content-block {
+  max-width: 80%;
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+}
+
 .content-block img {
   /* max-width: 100%; */
   width: 100%;
@@ -121,6 +143,12 @@ nav a.active {
   @media (max-width: 768px) {
     object-fit: cover;
     max-height: none;
+  }
+}
+
+@media (max-width: 768px) {
+  .content-block {
+    max-width: 100%;
   }
 }
 

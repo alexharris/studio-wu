@@ -104,7 +104,7 @@ export default function ImageTextBlock({ block }) {
 
   const textElement = (
     <div className="flex-1 w-full">
-      <div className="max-w-none">
+      <div className="prose max-w-none">
         <PortableText 
           value={text} 
           components={portableTextComponents}

@@ -1,10 +1,10 @@
 import Image from "next/image";
 import { notFound } from "next/navigation";
-import { client } from "../../../sanity/lib/client";
-import { urlFor } from "../../../sanity/lib/image";
-import { getProjectBySlugQuery, getAdjacentProjectsQuery } from "../../../utils/sanity-queries";
-import ContentBlocks from "../../../components/ContentBlocks";
-import ProjectPagination from "../../../components/ProjectPagination";
+import { client } from "@/sanity/lib/client";
+import { urlFor } from "@/sanity/lib/image";
+import { getProjectBySlugQuery, getAdjacentProjectsQuery } from "@/utils/sanity-queries";
+import ContentBlocks from "@/components/ContentBlocks";
+import ProjectPagination from "@/components/ProjectPagination";
 
 export default async function Project({ params }) {
   const { slug } = (await params);

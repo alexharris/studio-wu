@@ -1,7 +1,7 @@
 import { notFound } from "next/navigation";
-import { client } from "../../sanity/lib/client";
-import { getAboutPageQuery } from "../../utils/sanity-queries";
-import ContentBlocks from "../../components/ContentBlocks";
+import { client } from "@/sanity/lib/client";
+import { getAboutPageQuery } from "@/utils/sanity-queries";
+import ContentBlocks from "@/components/ContentBlocks";
 
 export default async function About() {
   const aboutPage = await client.fetch(getAboutPageQuery);
