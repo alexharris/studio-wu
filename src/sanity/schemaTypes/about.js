@@ -442,6 +442,37 @@ export default defineType({
         },
       ],
     }),
+    defineField({
+      name: 'logos',
+      title: 'Logos',
+      type: 'array',
+      description: 'Row of logos displayed on the About page',
+      of: [
+        {
+          type: 'object',
+          fields: [
+            defineField({
+              name: 'image',
+              title: 'Logo Image',
+              type: 'image',
+              options: { hotspot: true },
+              validation: Rule => Rule.required(),
+            }),
+            defineField({
+              name: 'alt',
+              title: 'Alt Text',
+              type: 'string',
+            }),
+          ],
+          preview: {
+            select: { media: 'image', title: 'alt' },
+            prepare({ media, title }) {
+              return { title: title || 'Logo', media };
+            },
+          },
+        },
+      ],
+    }),
   ],
   preview: {
     select: {

@@ -1,6 +1,7 @@
 import { notFound } from "next/navigation";
 import { client } from "@/sanity/lib/client";
 import { getAboutPageQuery } from "@/utils/sanity-queries";
+import { urlFor } from "@/sanity/lib/image";
 import ContentBlocks from "@/components/ContentBlocks";
 
 export default async function About() {
@@ -17,6 +18,20 @@ export default async function About() {
         
         {/* Render content blocks */}
         <ContentBlocks blocks={aboutPage.contentBlocks} />
+
+        {/* Logos row */}
+        {aboutPage.logos && aboutPage.logos.length > 0 && (
+          <div className="flex flex-wrap items-center justify-center gap-24 my-32 w-full">
+            {aboutPage.logos.map((logo) => (
+              <img
+                key={logo._key}
+                src={urlFor(logo.image).url()}
+                alt={logo.alt || ''}
+                className="h-24 w-auto object-contain"
+              />
+            ))}
+          </div>
+        )}
       </main>
     </div>
   );

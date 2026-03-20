@@ -20,14 +20,13 @@ export default async function Contact() {
         <p className="prose my-8 pt-4 pb-6">Get in touch at <a href={`mailto:${settings?.emailAddress || ''}`} className="underline underline-offset-4">{settings?.emailAddress || ''}</a></p>
         {/* Render contact image */}
         {contactPage.image && (
-
-            <img 
-              src={urlFor(contactPage.image).url()} 
-              alt={contactPage.alt || ''} 
-              className="w-full md:w-3/5 h-auto"
-            />
-       
+          <img
+            src={urlFor(contactPage.image).url()}
+            alt={contactPage.alt || ''}
+            className="w-full md:w-3/5 h-auto"
+          />
         )}
+
       </main>
     </div>
   );

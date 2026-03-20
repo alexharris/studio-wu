@@ -140,7 +140,17 @@ export const getAboutPageQuery = groq`
     _id,
     title,
     slug,
-    ${contentBlocksFragment}
+    ${contentBlocksFragment},
+    logos[]{
+      _key,
+      image{
+        asset->{
+          _id,
+          url
+        }
+      },
+      alt
+    }
   }
 `
 
