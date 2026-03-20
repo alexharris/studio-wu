@@ -65,10 +65,13 @@ h1, h2, h3, h4, h5, h6 {
    (rem is root-relative, so parent font-size alone won't override them). */
 .prose,
 .prose p,
-.prose li,
-.prose h2 {
+.prose li {
   font-size: 1.15rem;
   line-height: 1.7;
+}
+
+.prose p {
+  margin-bottom: 1.5rem;
 }
 
 a:hover {

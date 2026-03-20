@@ -2,6 +2,10 @@
 
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
+## Git
+
+Keep commit messages short. Do not mention Claude or Anthropic in commit messages.
+
 ## Commands
 
 ```bash

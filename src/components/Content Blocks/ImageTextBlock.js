@@ -32,17 +32,17 @@ export default function ImageTextBlock({ block }) {
         </p>
       ),
       h2: ({ children }) => (
-        <h2 className="text-2xl mb-4">
+        <h2 className="text-xl mb-2 self">
           {children}
         </h2>
       ),
       h3: ({ children }) => (
-        <h3 className="text-xl mb-3">
+        <h3 className="text-lg mb-2 self">
           {children}
         </h3>
       ),
       h4: ({ children }) => (
-        <h4 className="text-l mb-2">
+        <h4 className="text-base mb-2 self">
           {children}
         </h4>
       ),
