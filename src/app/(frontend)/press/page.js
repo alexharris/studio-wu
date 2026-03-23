@@ -13,7 +13,7 @@ export default async function Press() {
           <h1 className="text-4xl mb-24 text-center sr-only">Press</h1>
           <div className="flex flex-col md:flex-row-reverse gap-8">
             {pressItems.length > 0 ? (
-              <div className="prose w-full md:w-1/2 flex flex-col gap-8">
+              <div className="prose w-full md:w-1/2 flex flex-col gap-3">
                 {pressItems.map((pressItem) => (
                   <div key={pressItem._id} className="block">
                     <div className="">
