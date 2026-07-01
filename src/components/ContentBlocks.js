@@ -6,7 +6,8 @@ import {
   PullQuoteBlock,
   ImageTextBlock,
   QuoteImageBlock,
-  ImageQuoteImageBlock
+  ImageQuoteImageBlock,
+  TextBlock
 } from './Content Blocks';
 
 // Main ContentBlocks component that renders different block types
@@ -35,6 +36,8 @@ export default function ContentBlocks({ blocks }) {
             return <ImageTextBlock key={block._key} block={block} />;
           case 'quoteImage':
             return <QuoteImageBlock key={block._key} block={block} />;
+          case 'textBlock':
+            return <TextBlock key={block._key} block={block} />;
           default:
             console.warn(`Unknown block type: ${block._type}`);
             return null;

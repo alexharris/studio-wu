@@ -1,11 +1,14 @@
 import Image from "next/image";
 import { urlFor } from "../../sanity/lib/image";
+import { getBottomMarginProps } from "../../utils/bottomMargin";
 
 // Component to render a two column image block
 export default function TwoColumnImageBlock({ block }) {
-  const { leftImage, leftAlt, rightImage, rightAlt, leftImageSize, rightImageSize } = block;
-  
+  const { leftImage, leftAlt, rightImage, rightAlt, leftImageSize, rightImageSize, bottomMargin, customBottomMargin } = block;
+
   if (!leftImage || !rightImage) return null;
+
+  const marginProps = getBottomMarginProps({ bottomMargin, customBottomMargin });
 
   console.log(leftImageSize, rightImageSize);
   // Determine the width class based on imageSize selection
@@ -38,7 +41,7 @@ export default function TwoColumnImageBlock({ block }) {
 
 
   return (
-    <div className="content-block two-column-image-block mb-4 md:mb-24 flex self-center justify-center">
+    <div className={`content-block two-column-image-block ${marginProps.className} flex self-center justify-center`} style={marginProps.style}>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-8 w-full">
         <div className={`flex place-self-center justify-center ${leftWidthClass}`}>
           <Image

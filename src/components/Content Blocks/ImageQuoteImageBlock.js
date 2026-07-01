@@ -1,12 +1,15 @@
 import Image from "next/image";
 import { PortableText } from '@portabletext/react';
 import { urlFor } from "../../sanity/lib/image";
+import { getBottomMarginProps } from "../../utils/bottomMargin";
 
 // Component to render a two-column block with image + quote (3/5) and single image (2/5)
 export default function ImageQuoteImageBlock({ block }) {
-  const { leftImage, leftAlt, quote, attribution, rightImage, rightAlt, layout = 'quote-left', imageSize } = block;
-  
+  const { leftImage, leftAlt, quote, attribution, rightImage, rightAlt, layout = 'quote-left', imageSize, bottomMargin, customBottomMargin } = block;
+
   if (!leftImage || !quote || !rightImage) return null;
+
+  const marginProps = getBottomMarginProps({ bottomMargin, customBottomMargin });
 
   // Determine the width class based on imageSize selection
   const getWidthClass = (size) => {
@@ -80,7 +83,7 @@ export default function ImageQuoteImageBlock({ block }) {
   );
 
   return (
-    <div className={`content-block image-quote-image-block mb-4 md:mb-24 flex self-center justify-center ${widthClass}`}>
+    <div className={`content-block image-quote-image-block ${marginProps.className} flex self-center justify-center ${widthClass}`} style={marginProps.style}>
       <div className="grid grid-cols-1 md:grid-cols-5 gap-4 md:gap-8 w-full">
         {layout === 'quote-left' ? (
           <>

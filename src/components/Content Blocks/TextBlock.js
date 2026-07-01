@@ -1,30 +1,16 @@
-import Image from "next/image";
 import { PortableText } from '@portabletext/react';
-import { urlFor } from "../../sanity/lib/image";
 import { getBottomMarginProps } from "../../utils/bottomMargin";
 
-// Component to render an image and text block
-export default function ImageTextBlock({ block }) {
-  const { image, alt, text, layout = 'image-left', imageSize, bottomMargin, customBottomMargin } = block;
+// Component to render a text-only block
+export default function TextBlock({ block }) {
+  const { text, layout = 'full', bottomMargin, customBottomMargin } = block;
 
-  if (!image || !text) return null;
+  if (!text) return null;
 
   const marginProps = getBottomMarginProps({ bottomMargin, customBottomMargin });
 
-  // Determine the width class based on imageSize selection
-  const getWidthClass = (size) => {
-    switch (size) {
-      case 'max-w-9/12':
-        return 'md:max-w-9/12';
-      case 'max-w-1/2':
-        return 'md:max-w-1/2';
-      case 'none':
-      default:
-        return 'w-full';
-    }
-  };
-
-  const widthClass = getWidthClass(imageSize);
+  const columnClass = layout === 'left' || layout === 'right' ? 'w-full md:w-1/2' : 'w-full';
+  const justifyClass = layout === 'left' ? 'justify-start' : layout === 'right' ? 'justify-end' : '';
 
   // Standard body text styling for PortableText rendering
   const portableTextComponents = {
@@ -77,8 +63,8 @@ export default function ImageTextBlock({ block }) {
         </code>
       ),
       link: ({ children, value }) => (
-        <a 
-          href={value?.href} 
+        <a
+          href={value?.href}
           className="text-blue-600 hover:text-blue-800 underline"
           target={value?.href?.startsWith('http') ? '_blank' : '_self'}
           rel={value?.href?.startsWith('http') ? 'noopener noreferrer' : undefined}
@@ -92,44 +78,13 @@ export default function ImageTextBlock({ block }) {
     },
   };
 
-  const imageElement = (
-    <div className="flex-1 w-full self-center flex justify-center">
-      <Image
-        src={urlFor(image).url()}
-        alt={alt || 'Content image'}
-        width={0}
-        height={0}
-        sizes="(max-width: 768px) 100vw, 50vw"
-        className="w-1/2 h-auto"
-      />
-    </div>
-  );
-
-  const textElement = (
-    <div className="flex-1 w-full">
-      <div className="prose max-w-none">
-        <PortableText 
-          value={text} 
+  return (
+    <div className={`content-block text-block ${marginProps.className} flex ${justifyClass}`} style={marginProps.style}>
+      <div className={`${columnClass} prose max-w-none`}>
+        <PortableText
+          value={text}
           components={portableTextComponents}
         />
-      </div>
-    </div>
-  );
-
-  return (
-    <div className={`content-block image-text-block ${marginProps.className} flex self-center justify-center ${widthClass}`} style={marginProps.style}>
-      <div className="flex flex-col md:flex-row items-start gap-6 md:gap-8 w-full">
-        {layout === 'image-left' ? (
-          <>
-            {imageElement}
-            {textElement}
-          </>
-        ) : (
-          <>
-            {textElement}
-            {imageElement}
-          </>
-        )}
       </div>
     </div>
   );

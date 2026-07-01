@@ -19,7 +19,9 @@ const contentBlocksFragment = groq`
       },
       rightAlt,
       leftImageSize,
-      rightImageSize
+      rightImageSize,
+      bottomMargin,
+      customBottomMargin
     },
     _type == "centeredImage" => {
       image{
@@ -29,12 +31,16 @@ const contentBlocksFragment = groq`
       },
       alt,
       maxWidth,
-      imageSize
+      imageSize,
+      bottomMargin,
+      customBottomMargin
     },
     _type == "pullQuote" => {
       quote,
       attribution,
-      size
+      size,
+      bottomMargin,
+      customBottomMargin
     },
     _type == "imageQuoteImage" => {
       leftImage{
@@ -51,7 +57,9 @@ const contentBlocksFragment = groq`
         hotspot
       },
       rightAlt,
-      layout
+      layout,
+      bottomMargin,
+      customBottomMargin
     },
     _type == "threeImages" => {
       leftImage{
@@ -71,7 +79,9 @@ const contentBlocksFragment = groq`
         crop,
         hotspot
       },
-      rightAlt
+      rightAlt,
+      bottomMargin,
+      customBottomMargin
     },
     _type == "quoteTwoImages" => {
       quote,
@@ -88,7 +98,9 @@ const contentBlocksFragment = groq`
         hotspot
       },
       rightAlt,
-      layout
+      layout,
+      bottomMargin,
+      customBottomMargin
     },
     _type == "imageText" => {
       image{
@@ -99,7 +111,15 @@ const contentBlocksFragment = groq`
       alt,
       text,
       layout,
-      imageSize
+      imageSize,
+      bottomMargin,
+      customBottomMargin
+    },
+    _type == "textBlock" => {
+      text,
+      layout,
+      bottomMargin,
+      customBottomMargin
     }
   }
 `

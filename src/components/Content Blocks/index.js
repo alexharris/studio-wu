@@ -6,3 +6,4 @@ export { default as PullQuoteBlock } from './PullQuoteBlock';
 export { default as ImageTextBlock } from './ImageTextBlock';
 export { default as QuoteImageBlock } from './QuoteImageBlock';
 export { default as ImageQuoteImageBlock } from './ImageQuoteImageBlock';
+export { default as TextBlock } from './TextBlock';

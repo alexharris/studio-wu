@@ -1,4 +1,5 @@
 import {defineField, defineType} from 'sanity'
+import {bottomMarginFields} from './bottomMarginFields'
 
 export default defineType({
   name: 'about',
@@ -79,6 +80,7 @@ export default defineType({
               },
               initialValue: 'none',
             },
+            ...bottomMarginFields,
           ],
           preview: {
             select: {
@@ -145,6 +147,7 @@ export default defineType({
               },
               initialValue: 'none',
             },
+            ...bottomMarginFields,
           ],
           preview: {
             select: {
@@ -200,6 +203,7 @@ export default defineType({
               type: 'string',
               description: 'Optional attribution (author, source, etc.)',
             },
+            ...bottomMarginFields,
           ],
           preview: {
             select: {
@@ -310,6 +314,7 @@ export default defineType({
               },
               initialValue: 'none',
             },
+            ...bottomMarginFields,
           ],
           preview: {
             select: {
@@ -420,6 +425,7 @@ export default defineType({
               },
               initialValue: 'none',
             },
+            ...bottomMarginFields,
           ],
           preview: {
             select: {
@@ -436,6 +442,88 @@ export default defineType({
                 title: truncatedText || 'Image & Text',
                 subtitle: `${layoutLabel}`,
                 media: image,
+              };
+            },
+          },
+        },
+        {
+          name: 'textBlock',
+          title: 'Text Block',
+          type: 'object',
+          fields: [
+            {
+              name: 'text',
+              title: 'Text Content',
+              type: 'array',
+              of: [
+                {
+                  type: 'block',
+                  styles: [
+                    {title: 'Normal', value: 'normal'},
+                    {title: 'H2', value: 'h2'},
+                    {title: 'H3', value: 'h3'},
+                    {title: 'H4', value: 'h4'},
+                  ],
+                  lists: [
+                    {title: 'Bullet', value: 'bullet'},
+                    {title: 'Numbered', value: 'number'},
+                  ],
+                  marks: {
+                    decorators: [
+                      {title: 'Strong', value: 'strong'},
+                      {title: 'Emphasis', value: 'em'},
+                      {title: 'Underline', value: 'underline'},
+                      {title: 'Code', value: 'code'},
+                    ],
+                    annotations: [
+                      {
+                        title: 'URL',
+                        name: 'link',
+                        type: 'object',
+                        fields: [
+                          {
+                            title: 'URL',
+                            name: 'href',
+                            type: 'url',
+                          }
+                        ]
+                      }
+                    ],
+                  },
+                }
+              ],
+              validation: Rule => Rule.required(),
+              description: 'Rich text content with full WYSIWYG editing capabilities',
+            },
+            {
+              name: 'layout',
+              title: 'Layout',
+              type: 'string',
+              options: {
+                list: [
+                  {title: 'Full Width', value: 'full'},
+                  {title: 'Left Column', value: 'left'},
+                  {title: 'Right Column', value: 'right'},
+                ],
+              },
+              initialValue: 'full',
+              description: 'Choose how the text is positioned within the row',
+            },
+            ...bottomMarginFields,
+          ],
+          preview: {
+            select: {
+              text: 'text',
+              layout: 'layout',
+            },
+            prepare(selection) {
+              const {text, layout} = selection;
+              const layoutLabel = layout === 'left' ? 'Left Column' : layout === 'right' ? 'Right Column' : 'Full Width';
+              const plainText = text?.[0]?.children?.[0]?.text || '';
+              const truncatedText = plainText.length > 40 ? plainText.substring(0, 40) + '...' : plainText;
+              return {
+                title: truncatedText || 'Text Block',
+                subtitle: layoutLabel,
               };
             },
           },

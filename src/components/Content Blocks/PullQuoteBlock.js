@@ -1,10 +1,13 @@
 import { PortableText } from '@portabletext/react';
+import { getBottomMarginProps } from "../../utils/bottomMargin";
 
 // Component to render a pull quote block
 export default function PullQuoteBlock({ block }) {
-  const { quote, attribution } = block;
-  
+  const { quote, attribution, bottomMargin, customBottomMargin } = block;
+
   if (!quote) return null;
+
+  const marginProps = getBottomMarginProps({ bottomMargin, customBottomMargin });
 
   // Custom components for PortableText rendering
   const portableTextComponents = {
@@ -22,7 +25,7 @@ export default function PullQuoteBlock({ block }) {
   };
 
   return (
-    <div className="content-block pull-quote-block mb-4 md:mb-24 py-8">
+    <div className={`content-block pull-quote-block ${marginProps.className} py-8`} style={marginProps.style}>
       <blockquote className="text-center max-w-4xl mx-auto">
         <PortableText 
           value={quote} 
