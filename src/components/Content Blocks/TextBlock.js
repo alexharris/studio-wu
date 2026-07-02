@@ -9,8 +9,7 @@ export default function TextBlock({ block }) {
 
   const marginProps = getBottomMarginProps({ bottomMargin, customBottomMargin });
 
-  const columnClass = layout === 'left' || layout === 'right' ? 'w-full md:w-1/2' : 'w-full';
-  const justifyClass = layout === 'left' ? 'justify-start' : layout === 'right' ? 'justify-end' : '';
+  const isTwoColumn = layout === 'left' || layout === 'right';
 
   // Standard body text styling for PortableText rendering
   const portableTextComponents = {
@@ -78,13 +77,42 @@ export default function TextBlock({ block }) {
     },
   };
 
+  const textElement = (
+    <div className="flex-1 w-full prose max-w-none">
+      <PortableText
+        value={text}
+        components={portableTextComponents}
+      />
+    </div>
+  );
+
+  if (!isTwoColumn) {
+    return (
+      <div className={`content-block text-block ${marginProps.className}`} style={marginProps.style}>
+        <div className="prose max-w-none">
+          <PortableText
+            value={text}
+            components={portableTextComponents}
+          />
+        </div>
+      </div>
+    );
+  }
+
   return (
-    <div className={`content-block text-block ${marginProps.className} flex ${justifyClass}`} style={marginProps.style}>
-      <div className={`${columnClass} prose max-w-none`}>
-        <PortableText
-          value={text}
-          components={portableTextComponents}
-        />
+    <div className={`content-block text-block ${marginProps.className}`} style={marginProps.style}>
+      <div className="flex flex-col md:flex-row items-start gap-6 md:gap-8 w-full">
+        {layout === 'left' ? (
+          <>
+            {textElement}
+            <div className="hidden md:block flex-1 w-full" />
+          </>
+        ) : (
+          <>
+            <div className="hidden md:block flex-1 w-full" />
+            {textElement}
+          </>
+        )}
       </div>
     </div>
   );
