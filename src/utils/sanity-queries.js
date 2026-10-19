@@ -130,6 +130,7 @@ export const getAllProjectsQuery = groq`
     title,
     slug,
     location,
+    category,
     featuredImage{
       asset->{
         _id,

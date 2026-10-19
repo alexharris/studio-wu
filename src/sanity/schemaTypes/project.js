@@ -28,6 +28,18 @@ export default defineType({
       title: 'Location',
       type: 'string',
     }),
+    defineField({
+      name: 'category',
+      title: 'Category',
+      type: 'string',
+      options: {
+        list: [
+          {title: 'Commercial', value: 'commercial'},
+          {title: 'Residential', value: 'residential'},
+        ],
+        layout: 'radio',
+      },
+    }),
     orderRankField({type: 'project'}),
     defineField({
       name: 'featuredImage',
