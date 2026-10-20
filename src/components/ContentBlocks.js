@@ -1,5 +1,6 @@
 import {
   TwoColumnImageBlock,
+  FullWidthImageBlock,
   ThreeImagesBlock,
   QuoteTwoImagesBlock,
   CenteredImageBlock,
@@ -22,6 +23,8 @@ export default function ContentBlocks({ blocks }) {
         switch (block._type) {
           case 'twoColumnImage':
             return <TwoColumnImageBlock key={block._key} block={block} />;
+          case 'fullWidthImage':
+            return <FullWidthImageBlock key={block._key} block={block} />;
           case 'threeImages':
             return <ThreeImagesBlock key={block._key} block={block} />;
           case 'quoteTwoImages':

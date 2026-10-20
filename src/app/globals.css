@@ -157,8 +157,45 @@ nav a.active {
 
 
 
+/* Project content blocks fill the column, matching the hero image */
+/* Row spacing matches the column gap (gap-4 / md:gap-8) in two column blocks.
+   !important so margins saved on older blocks are ignored. */
+#project-page .content-block {
+  max-width: 100%;
+  margin-bottom: 1rem !important;
+  @media (min-width: 768px) {
+    margin-bottom: 2rem !important;
+  }
+}
+
+#project-page .content-block img {
+  max-height: none;
+  object-fit: cover;
+}
+
 /* Limit width of about content */
 #about-page .content-block {
   max-width: 1400px;
   margin: 0 auto;
+}
+
+
+/* Brief fade-in so a filter change is visible even when the top item is unchanged */
+.list-flash {
+  animation: list-flash 0.5s ease-out;
+}
+
+@keyframes list-flash {
+  from {
+    opacity: 0.15;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .list-flash {
+    animation: none;
+  }
 }

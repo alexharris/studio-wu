@@ -18,8 +18,18 @@ const contentBlocksFragment = groq`
         hotspot
       },
       rightAlt,
-      leftImageSize,
-      rightImageSize,
+      aspectRatio,
+      bottomMargin,
+      customBottomMargin
+    },
+    _type == "fullWidthImage" => {
+      image{
+        asset,
+        crop,
+        hotspot
+      },
+      alt,
+      aspectRatio,
       bottomMargin,
       customBottomMargin
     },
@@ -146,11 +156,15 @@ export const getProjectBySlugQuery = groq`
     title,
     slug,
     location,
+    category,
+    description,
     featuredImage{
       asset->{
         _id,
         url
-      }
+      },
+      crop,
+      hotspot
     },
     ${contentBlocksFragment}
   }

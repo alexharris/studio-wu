@@ -4,63 +4,44 @@ import { getBottomMarginProps } from "../../utils/bottomMargin";
 
 // Component to render a two column image block
 export default function TwoColumnImageBlock({ block }) {
-  const { leftImage, leftAlt, rightImage, rightAlt, leftImageSize, rightImageSize, bottomMargin, customBottomMargin } = block;
+  const { leftImage, leftAlt, rightImage, rightAlt, aspectRatio, bottomMargin, customBottomMargin } = block;
 
   if (!leftImage || !rightImage) return null;
 
   const marginProps = getBottomMarginProps({ bottomMargin, customBottomMargin });
 
-  console.log(leftImageSize, rightImageSize);
-  // Determine the width class based on imageSize selection
-  const getLeftImageSize = (leftImageSize) => {
-    switch (leftImageSize) {
-      case 'max-w-9/12':
-        return 'md:max-w-9/12';
-      case 'max-w-1/2':
-        return 'md:max-w-1/2';
-      case 'none':
-      default:
-        return 'w-full';
-    }
-  };
-
-  const getRightImageSize = (rightImageSize) => {
-    switch (rightImageSize) {
-      case 'max-w-9/12':
-        return 'md:max-w-9/12';
-      case 'max-w-1/2':
-        return 'md:max-w-1/2';
-      case 'none':
-      default:
-        return 'w-full';
-    }
-  };
-
-  const leftWidthClass = getLeftImageSize(leftImageSize);
-  const rightWidthClass = getRightImageSize(rightImageSize);
+  // Landscape/portrait crop both images to the same shape; anything else keeps the original proportions
+  const cropped = aspectRatio === 'landscape' || aspectRatio === 'portrait';
+  const [cropWidth, cropHeight] = aspectRatio === 'portrait' ? [1000, 1500] : [1500, 1000];
+  const imageUrl = (image) => cropped
+    ? urlFor(image).width(cropWidth).height(cropHeight).fit('crop').url()
+    : urlFor(image).url();
+  const imageClass = cropped
+    ? `w-full h-auto object-cover ${aspectRatio === 'portrait' ? 'aspect-[2/3]' : 'aspect-[3/2]'}`
+    : 'w-full h-auto';
 
 
   return (
     <div className={`content-block two-column-image-block ${marginProps.className} flex self-center justify-center`} style={marginProps.style}>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-8 w-full">
-        <div className={`flex place-self-center justify-center ${leftWidthClass}`}>
+        <div className="w-full self-center">
           <Image
-            src={urlFor(leftImage).url()}
+            src={imageUrl(leftImage)}
             alt={leftAlt || 'Left image'}
             width={0}
             height={0}
             sizes="100vw"
-            className="w-full h-auto"
+            className={imageClass}
           />
         </div>
-        <div className={`flex place-self-center justify-center ${rightWidthClass}`}>
+        <div className="w-full self-center">
           <Image
-            src={urlFor(rightImage).url()}
+            src={imageUrl(rightImage)}
             alt={rightAlt || 'Right image'}
             width={0}
             height={0}
             sizes="100vw"
-            className="w-full h-auto"
+            className={imageClass}
           />
         </div>
       </div>

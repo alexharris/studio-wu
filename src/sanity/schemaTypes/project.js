@@ -40,6 +40,12 @@ export default defineType({
         layout: 'radio',
       },
     }),
+    defineField({
+      name: 'description',
+      title: 'Description',
+      type: 'text',
+      rows: 6,
+    }),
     orderRankField({type: 'project'}),
     defineField({
       name: 'featuredImage',
@@ -75,19 +81,6 @@ export default defineType({
               description: 'Alternative text for left image',
             },
             {
-              name: 'leftImageSize',
-              title: 'Left Image Size',
-              type: 'string',
-              options: {
-                list: [
-                  {title: 'Original', value: 'none'},
-                  {title: 'Medium (3/4)', value: 'max-w-9/12'},
-                  {title: 'Small (1/2)', value: 'max-w-1/2'},
-                ],
-              },
-              initialValue: 'none',
-            },
-            {
               name: 'rightImage',
               title: 'Right Image',
               type: 'image',
@@ -103,19 +96,20 @@ export default defineType({
               description: 'Alternative text for right image',
             },
             {
-              name: 'rightImageSize',
-              title: 'Right Image Size',
+              name: 'aspectRatio',
+              title: 'Image Shape',
               type: 'string',
+              description: 'Crops both images in this row to the same shape',
               options: {
                 list: [
-                  {title: 'Original', value: 'none'},
-                  {title: 'Medium (3/4)', value: 'max-w-9/12'},
-                  {title: 'Small (1/2)', value: 'max-w-1/2'},
+                  {title: 'Landscape (3:2)', value: 'landscape'},
+                  {title: 'Portrait (2:3)', value: 'portrait'},
+                  {title: 'Original', value: 'original'},
                 ],
+                layout: 'radio',
               },
-              initialValue: 'none',
+              initialValue: 'landscape',
             },
-            ...bottomMarginFields,
           ],
           preview: {
             select: {
@@ -325,6 +319,55 @@ export default defineType({
                 title: attribution || quoteText,
                 subtitle: `Quote + Two Images (${layoutLabel})`,
                 media: leftImage,
+              };
+            },
+          },
+        },
+        {
+          name: 'fullWidthImage',
+          title: 'Full Width Image',
+          type: 'object',
+          fields: [
+            {
+              name: 'image',
+              title: 'Image',
+              type: 'image',
+              options: {
+                hotspot: true,
+              },
+              validation: Rule => Rule.required(),
+            },
+            {
+              name: 'alt',
+              title: 'Alt Text',
+              type: 'string',
+              description: 'Alternative text for accessibility',
+            },
+            {
+              name: 'aspectRatio',
+              title: 'Image Shape',
+              type: 'string',
+              options: {
+                list: [
+                  {title: 'Wide (2:1)', value: 'wide'},
+                  {title: 'Landscape (3:2)', value: 'landscape'},
+                  {title: 'Original', value: 'original'},
+                ],
+                layout: 'radio',
+              },
+              initialValue: 'wide',
+            },
+          ],
+          preview: {
+            select: {
+              title: 'alt',
+              media: 'image',
+            },
+            prepare({title, media}) {
+              return {
+                title: title || 'Full Width Image',
+                subtitle: 'Full Width Block',
+                media,
               };
             },
           },

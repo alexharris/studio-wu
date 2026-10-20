@@ -1,4 +1,5 @@
 export { default as TwoColumnImageBlock } from './TwoColumnImageBlock';
+export { default as FullWidthImageBlock } from './FullWidthImageBlock';
 export { default as ThreeImagesBlock } from './ThreeImagesBlock';
 export { default as QuoteTwoImagesBlock } from './QuoteTwoImagesBlock';
 export { default as CenteredImageBlock } from './CenteredImageBlock';
