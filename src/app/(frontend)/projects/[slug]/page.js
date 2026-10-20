@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { PortableText } from "@portabletext/react";
 import { notFound } from "next/navigation";
 import { client } from "@/sanity/lib/client";
 import { urlFor } from "@/sanity/lib/image";
@@ -8,6 +9,35 @@ import ProjectsSidebar from "@/components/ProjectsSidebar";
 
 // Other block types remain in the Studio but are not shown on the project page
 const DISPLAYED_BLOCK_TYPES = ["twoColumnImage", "fullWidthImage"];
+
+const descriptionComponents = {
+  block: {
+    normal: ({ children }) => <p className="mb-4 last:mb-0">{children}</p>,
+  },
+  list: {
+    bullet: ({ children }) => <ul className="list-disc ml-6 mb-4 space-y-1">{children}</ul>,
+    number: ({ children }) => <ol className="list-decimal ml-6 mb-4 space-y-1">{children}</ol>,
+  },
+  marks: {
+    link: ({ children, value }) => (
+      <a
+        href={value?.href}
+        className="underline underline-offset-4"
+        target={value?.href?.startsWith("http") ? "_blank" : undefined}
+        rel={value?.href?.startsWith("http") ? "noopener noreferrer" : undefined}
+      >
+        {children}
+      </a>
+    ),
+  },
+};
+
+// Flatten portable text to a plain string (used for the meta description)
+const toPlainText = (blocks) =>
+  (blocks || [])
+    .map((block) => (block.children || []).map((child) => child.text).join(""))
+    .join(" ")
+    .trim();
 
 export default async function Project({ params }) {
   const { slug } = (await params);
@@ -44,8 +74,10 @@ export default async function Project({ params }) {
               <h1 className="text-3xl mb-3">{project.title}</h1>
               {project.location && <p className="angie">{project.location}</p>}
             </div>
-            {project.description && (
-              <p className="angie whitespace-pre-line text-[1.15rem] leading-[1.7]">{project.description}</p>
+            {project.description?.length > 0 && (
+              <div className="angie text-[1.15rem] leading-[1.7]">
+                <PortableText value={project.description} components={descriptionComponents} />
+              </div>
             )}
           </div>
 
@@ -66,6 +98,6 @@ export async function generateMetadata({ params }) {
 
   return {
     title: `${project?.title || 'Project'} - Studio Wu`,
-    description: project?.description || 'Learn more about Studio Wu',
+    description: toPlainText(project?.description) || 'Learn more about Studio Wu',
   };
 }
