@@ -6,6 +6,8 @@ import { urlFor } from "@/sanity/lib/image";
 import { getProjectBySlugQuery, getAllProjectsQuery } from "@/utils/sanity-queries";
 import ContentBlocks from "@/components/ContentBlocks";
 import ProjectsSidebar from "@/components/ProjectsSidebar";
+import Lightbox from "@/components/Lightbox";
+import ExpandOnHover from "@/components/ExpandOnHover";
 
 // Other block types remain in the Studio but are not shown on the project page
 const DISPLAYED_BLOCK_TYPES = ["twoColumnImage", "fullWidthImage"];
@@ -51,13 +53,17 @@ export default async function Project({ params }) {
     notFound();
   }
 
+  const blocks = project.contentBlocks?.filter((block) => DISPLAYED_BLOCK_TYPES.includes(block._type)) || [];
+
   return (
     <div className="px-4 md:px-8 flex-1">
       <div className="flex flex-col md:flex-row gap-6 md:gap-8">
         <ProjectsSidebar expandedCategory={project.category} projects={projects} currentSlug={slug} />
 
         <main id="project-page" className="flex-1 min-w-0 md:pb-16">
+          <Lightbox>
           {project.featuredImage && (
+            <ExpandOnHover>
             <Image
               src={urlFor(project.featuredImage).url()}
               alt={project.title || "Project image"}
@@ -65,8 +71,10 @@ export default async function Project({ params }) {
               height={0}
               sizes="(min-width: 768px) 75vw, 100vw"
               priority
-              className="w-full h-auto"
+              data-lightbox={urlFor(project.featuredImage).width(2400).fit("max").auto("format").url()}
+              className="w-full h-auto cursor-zoom-in"
             />
+            </ExpandOnHover>
           )}
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 mt-12 md:mt-16 mb-12 md:mb-16">
@@ -81,7 +89,8 @@ export default async function Project({ params }) {
             )}
           </div>
 
-          <ContentBlocks blocks={project.contentBlocks?.filter((block) => DISPLAYED_BLOCK_TYPES.includes(block._type))} />
+          <ContentBlocks blocks={blocks} />
+          </Lightbox>
         </main>
       </div>
     </div>

@@ -1,4 +1,5 @@
 import Image from "next/image";
+import ExpandOnHover from "../ExpandOnHover";
 import { urlFor } from "../../sanity/lib/image";
 import { getBottomMarginProps } from "../../utils/bottomMargin";
 
@@ -18,14 +19,17 @@ export default function FullWidthImageBlock({ block }) {
 
   return (
     <div className={`content-block full-width-image-block ${marginProps.className}`} style={marginProps.style}>
+      <ExpandOnHover>
       <Image
         src={crop ? urlFor(image).width(crop.width).height(crop.height).fit('crop').url() : urlFor(image).url()}
         alt={alt || 'Content image'}
+        data-lightbox={urlFor(image).width(2400).fit('max').auto('format').url()}
         width={0}
         height={0}
         sizes="(min-width: 768px) 75vw, 100vw"
-        className={`w-full h-auto ${crop ? `${crop.className} object-cover` : ''}`}
+        className={`w-full h-auto cursor-zoom-in ${crop ? `${crop.className} object-cover` : ''}`}
       />
+      </ExpandOnHover>
     </div>
   );
 }

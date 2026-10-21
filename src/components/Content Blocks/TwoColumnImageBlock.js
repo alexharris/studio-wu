@@ -1,4 +1,5 @@
 import Image from "next/image";
+import ExpandOnHover from "../ExpandOnHover";
 import { urlFor } from "../../sanity/lib/image";
 import { getBottomMarginProps } from "../../utils/bottomMargin";
 
@@ -16,33 +17,40 @@ export default function TwoColumnImageBlock({ block }) {
   const imageUrl = (image) => cropped
     ? urlFor(image).width(cropWidth).height(cropHeight).fit('crop').url()
     : urlFor(image).url();
+  const lightboxUrl = (image) => urlFor(image).width(2400).fit('max').auto('format').url();
   const imageClass = cropped
-    ? `w-full h-auto object-cover ${aspectRatio === 'portrait' ? 'aspect-[2/3]' : 'aspect-[3/2]'}`
-    : 'w-full h-auto';
+    ? `cursor-zoom-in w-full h-auto object-cover ${aspectRatio === 'portrait' ? 'aspect-[2/3]' : 'aspect-[3/2]'}`
+    : 'cursor-zoom-in w-full h-auto';
 
 
   return (
     <div className={`content-block two-column-image-block ${marginProps.className} flex self-center justify-center`} style={marginProps.style}>
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-8 w-full">
+      <div className="grid grid-cols-2 gap-4 md:gap-8 w-full">
         <div className="w-full self-center">
+          <ExpandOnHover>
           <Image
             src={imageUrl(leftImage)}
             alt={leftAlt || 'Left image'}
+            data-lightbox={lightboxUrl(leftImage)}
             width={0}
             height={0}
             sizes="100vw"
             className={imageClass}
           />
+          </ExpandOnHover>
         </div>
         <div className="w-full self-center">
+          <ExpandOnHover>
           <Image
             src={imageUrl(rightImage)}
             alt={rightAlt || 'Right image'}
+            data-lightbox={lightboxUrl(rightImage)}
             width={0}
             height={0}
             sizes="100vw"
             className={imageClass}
           />
+          </ExpandOnHover>
         </div>
       </div>
     </div>

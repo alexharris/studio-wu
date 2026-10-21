@@ -2,8 +2,8 @@ import Link from "next/link";
 
 const filters = [
   { label: "All", value: null },
-  { label: "Commercial", value: "commercial" },
   { label: "Residential", value: "residential" },
+  { label: "Commercial", value: "commercial" },
 ];
 
 export const categoryValues = filters.map((f) => f.value).filter(Boolean);
@@ -13,19 +13,21 @@ export const categoryValues = filters.map((f) => f.value).filter(Boolean);
 // - expandedCategory + projects + currentSlug: lists that category's projects (project page)
 export default function ProjectsSidebar({ activeFilter = null, expandedCategory = null, projects = [], currentSlug = null }) {
   return (
-    <nav aria-label="Projects" className="md:w-1/4 shrink-0">
+    <nav aria-label="Projects" className="md:w-[calc(25%_+_100px)] shrink-0 md:sticky md:top-8 md:self-start">
       <ul className="flex md:flex-col gap-6 self text-2xl">
         {filters.map((filter) => {
           const children = filter.value && filter.value === expandedCategory
             ? projects.filter((project) => project.category === filter.value)
             : [];
 
+          const isActive = activeFilter === filter.value && (activeFilter !== null || !expandedCategory);
+
           return (
             <li key={filter.label}>
               <Link
                 href={filter.value ? `/projects?category=${filter.value}` : "/projects"}
-                aria-current={activeFilter === filter.value && !expandedCategory ? "page" : undefined}
-                className={activeFilter === filter.value && !expandedCategory ? "underline underline-offset-4" : ""}
+                aria-current={isActive ? "page" : undefined}
+                className={isActive ? "underline underline-offset-4" : ""}
               >
                 {filter.label}
               </Link>

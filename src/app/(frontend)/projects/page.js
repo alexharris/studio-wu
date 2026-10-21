@@ -18,9 +18,9 @@ export default async function Projects({ searchParams }) {
       <main className="flex flex-col md:flex-row gap-6 md:gap-8">
         <h1 className="sr-only">Projects</h1>
 
-        <ProjectsSidebar activeFilter={active} />
+        <ProjectsSidebar activeFilter={active} expandedCategory={active} projects={allProjects} />
 
-        <div key={active ?? "all"} className="list-flash flex-1 flex flex-col gap-12 md:gap-16">
+        <div key={active ?? "all"} className="list-flash flex-1 grid grid-cols-1 md:grid-cols-2 gap-x-6 md:gap-x-8 gap-y-12 md:gap-y-16 content-start">
           {projects.length > 0 ? (
             projects.map((project) => (
               <div key={project._id}>
@@ -31,7 +31,7 @@ export default async function Projects({ searchParams }) {
                       alt={project.title || "Project image"}
                       width={1600}
                       height={980}
-                      sizes="(min-width: 768px) 75vw, 100vw"
+                      sizes="(min-width: 768px) 38vw, 100vw"
                       className="w-full aspect-[1600/980] object-cover"
                     />
                   </Link>
